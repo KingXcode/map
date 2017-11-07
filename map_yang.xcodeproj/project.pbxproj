@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		133E2ACC733744670A3B146D /* libPods-map_yang.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E44AB1801697FA7AB1B0A79 /* libPods-map_yang.a */; };
+		CB1BDB711FB1FF9A00228A15 /* HTMapManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CB1BDB701FB1FF9A00228A15 /* HTMapManager.m */; };
+		CB1BDB751FB2178300228A15 /* HTProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = CB1BDB741FB2178300228A15 /* HTProgressHUD.m */; };
+		CB1BDB7A1FB21A4E00228A15 /* HTColor.m in Sources */ = {isa = PBXBuildFile; fileRef = CB1BDB791FB21A4E00228A15 /* HTColor.m */; };
 		CBE6F8AC1FB0D01500DD346B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = CBE6F8AB1FB0D01500DD346B /* AppDelegate.m */; };
 		CBE6F8AF1FB0D01500DD346B /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CBE6F8AE1FB0D01500DD346B /* ViewController.m */; };
 		CBE6F8B21FB0D01500DD346B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CBE6F8B01FB0D01500DD346B /* Main.storyboard */; };
@@ -20,6 +23,12 @@
 		2E44AB1801697FA7AB1B0A79 /* libPods-map_yang.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-map_yang.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3112EBBC239EBB4CBCF91F15 /* Pods-map_yang.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-map_yang.release.xcconfig"; path = "Pods/Target Support Files/Pods-map_yang/Pods-map_yang.release.xcconfig"; sourceTree = "<group>"; };
 		C83FADBBC2154186F119A597 /* Pods-map_yang.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-map_yang.debug.xcconfig"; path = "Pods/Target Support Files/Pods-map_yang/Pods-map_yang.debug.xcconfig"; sourceTree = "<group>"; };
+		CB1BDB6F1FB1FF9A00228A15 /* HTMapManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HTMapManager.h; sourceTree = "<group>"; };
+		CB1BDB701FB1FF9A00228A15 /* HTMapManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HTMapManager.m; sourceTree = "<group>"; };
+		CB1BDB731FB2178300228A15 /* HTProgressHUD.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HTProgressHUD.h; sourceTree = "<group>"; };
+		CB1BDB741FB2178300228A15 /* HTProgressHUD.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HTProgressHUD.m; sourceTree = "<group>"; };
+		CB1BDB781FB21A4E00228A15 /* HTColor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HTColor.h; sourceTree = "<group>"; };
+		CB1BDB791FB21A4E00228A15 /* HTColor.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HTColor.m; sourceTree = "<group>"; };
 		CBE6F8A71FB0D01500DD346B /* map_yang.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = map_yang.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CBE6F8AA1FB0D01500DD346B /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		CBE6F8AB1FB0D01500DD346B /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -52,6 +61,43 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		CB1BDB6E1FB1FF8000228A15 /* MapManager */ = {
+			isa = PBXGroup;
+			children = (
+				CB1BDB6F1FB1FF9A00228A15 /* HTMapManager.h */,
+				CB1BDB701FB1FF9A00228A15 /* HTMapManager.m */,
+			);
+			path = MapManager;
+			sourceTree = "<group>";
+		};
+		CB1BDB721FB2176300228A15 /* HTProgressHUD */ = {
+			isa = PBXGroup;
+			children = (
+				CB1BDB731FB2178300228A15 /* HTProgressHUD.h */,
+				CB1BDB741FB2178300228A15 /* HTProgressHUD.m */,
+			);
+			path = HTProgressHUD;
+			sourceTree = "<group>";
+		};
+		CB1BDB761FB21A0D00228A15 /* Custom */ = {
+			isa = PBXGroup;
+			children = (
+				CB1BDB771FB21A3C00228A15 /* HTColor */,
+				CB1BDB721FB2176300228A15 /* HTProgressHUD */,
+				CB1BDB6E1FB1FF8000228A15 /* MapManager */,
+			);
+			path = Custom;
+			sourceTree = "<group>";
+		};
+		CB1BDB771FB21A3C00228A15 /* HTColor */ = {
+			isa = PBXGroup;
+			children = (
+				CB1BDB781FB21A4E00228A15 /* HTColor.h */,
+				CB1BDB791FB21A4E00228A15 /* HTColor.m */,
+			);
+			path = HTColor;
+			sourceTree = "<group>";
+		};
 		CBE6F89E1FB0D01500DD346B = {
 			isa = PBXGroup;
 			children = (
@@ -73,6 +119,7 @@
 		CBE6F8A91FB0D01500DD346B /* map_yang */ = {
 			isa = PBXGroup;
 			children = (
+				CB1BDB761FB21A0D00228A15 /* Custom */,
 				CBE6F8AA1FB0D01500DD346B /* AppDelegate.h */,
 				CBE6F8AB1FB0D01500DD346B /* AppDelegate.m */,
 				CBE6F8AD1FB0D01500DD346B /* ViewController.h */,
@@ -124,6 +171,7 @@
 		CBE6F89F1FB0D01500DD346B /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				CLASSPREFIX = HT;
 				LastUpgradeCheck = 0910;
 				ORGANIZATIONNAME = niesiyang;
 				TargetAttributes = {
@@ -228,7 +276,10 @@
 			files = (
 				CBE6F8AF1FB0D01500DD346B /* ViewController.m in Sources */,
 				CBE6F8BA1FB0D01500DD346B /* main.m in Sources */,
+				CB1BDB711FB1FF9A00228A15 /* HTMapManager.m in Sources */,
+				CB1BDB7A1FB21A4E00228A15 /* HTColor.m in Sources */,
 				CBE6F8AC1FB0D01500DD346B /* AppDelegate.m in Sources */,
+				CB1BDB751FB2178300228A15 /* HTProgressHUD.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
