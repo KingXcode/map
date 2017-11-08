@@ -32,4 +32,14 @@
     return UIColorFromHex(0x999999);
 }
 
++(UIColor *)ht_whiteColor;
+{
+    return [UIColor whiteColor];
+}
+
++(UIColor *)ht_lineColor
+{
+    return UIColorFromHex(0xe1e1e1);
+}
+
 @end

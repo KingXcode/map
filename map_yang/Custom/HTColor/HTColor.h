@@ -15,4 +15,7 @@
 +(UIColor *)textColor_666666;
 +(UIColor *)textColor_999999;
 
++(UIColor *)ht_whiteColor;
++(UIColor *)ht_lineColor;
+
 @end

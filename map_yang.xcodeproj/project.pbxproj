@@ -17,6 +17,7 @@
 		CBE6F8B41FB0D01500DD346B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CBE6F8B31FB0D01500DD346B /* Assets.xcassets */; };
 		CBE6F8B71FB0D01500DD346B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CBE6F8B51FB0D01500DD346B /* LaunchScreen.storyboard */; };
 		CBE6F8BA1FB0D01500DD346B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CBE6F8B91FB0D01500DD346B /* main.m */; };
+		FBFBA2081FB2C53300B83ACC /* HTMainMapInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = FBFBA2071FB2C53300B83ACC /* HTMainMapInfoView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -39,6 +40,8 @@
 		CBE6F8B61FB0D01500DD346B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CBE6F8B81FB0D01500DD346B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CBE6F8B91FB0D01500DD346B /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		FBFBA2061FB2C53300B83ACC /* HTMainMapInfoView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HTMainMapInfoView.h; sourceTree = "<group>"; };
+		FBFBA2071FB2C53300B83ACC /* HTMainMapInfoView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HTMainMapInfoView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -153,6 +156,8 @@
 		FBFBA2051FB2C4B300B83ACC /* View */ = {
 			isa = PBXGroup;
 			children = (
+				FBFBA2061FB2C53300B83ACC /* HTMainMapInfoView.h */,
+				FBFBA2071FB2C53300B83ACC /* HTMainMapInfoView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -302,6 +307,7 @@
 				CBE6F8BA1FB0D01500DD346B /* main.m in Sources */,
 				CB1BDB711FB1FF9A00228A15 /* HTMapManager.m in Sources */,
 				CB1BDB7A1FB21A4E00228A15 /* HTColor.m in Sources */,
+				FBFBA2081FB2C53300B83ACC /* HTMainMapInfoView.m in Sources */,
 				CBE6F8AC1FB0D01500DD346B /* AppDelegate.m in Sources */,
 				CB1BDB751FB2178300228A15 /* HTProgressHUD.m in Sources */,
 			);
