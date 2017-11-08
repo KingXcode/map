@@ -25,6 +25,14 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+
+    //初始化地图
+    [self addMapView];
+}
+
+
+-(void)addMapView
+{
     ///初始化地图
     MAMapView *mapView = [[MAMapView alloc] initWithFrame:self.view.bounds];
     mapView.mapType = MAMapTypeStandard;
@@ -41,7 +49,6 @@
             make.edges.equalTo(self.view);
         }
     }];
-
 }
 
 -(void)viewWillAppear:(BOOL)animated

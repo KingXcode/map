@@ -122,8 +122,7 @@
 				CB1BDB761FB21A0D00228A15 /* Custom */,
 				CBE6F8AA1FB0D01500DD346B /* AppDelegate.h */,
 				CBE6F8AB1FB0D01500DD346B /* AppDelegate.m */,
-				CBE6F8AD1FB0D01500DD346B /* ViewController.h */,
-				CBE6F8AE1FB0D01500DD346B /* ViewController.m */,
+				FBFBA2031FB2C48000B83ACC /* MainMap页面 */,
 				CBE6F8B01FB0D01500DD346B /* Main.storyboard */,
 				CBE6F8B31FB0D01500DD346B /* Assets.xcassets */,
 				CBE6F8B51FB0D01500DD346B /* LaunchScreen.storyboard */,
@@ -131,6 +130,31 @@
 				CBE6F8B91FB0D01500DD346B /* main.m */,
 			);
 			path = map_yang;
+			sourceTree = "<group>";
+		};
+		FBFBA2031FB2C48000B83ACC /* MainMap页面 */ = {
+			isa = PBXGroup;
+			children = (
+				FBFBA2051FB2C4B300B83ACC /* View */,
+				FBFBA2041FB2C4AD00B83ACC /* Controller */,
+			);
+			path = "MainMap页面";
+			sourceTree = "<group>";
+		};
+		FBFBA2041FB2C4AD00B83ACC /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				CBE6F8AD1FB0D01500DD346B /* ViewController.h */,
+				CBE6F8AE1FB0D01500DD346B /* ViewController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		FBFBA2051FB2C4B300B83ACC /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		FE5C3B7321D3293472A1C115 /* Pods */ = {
