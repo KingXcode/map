@@ -42,4 +42,14 @@
     return UIColorFromHex(0xe1e1e1);
 }
 
++(UIColor *)ht_clearColor
+{
+    return [UIColor clearColor];
+}
+
++(UIColor *)ht_emptyColor
+{
+    return UIColorFromHex(0xf5f5f5);
+}
+
 @end

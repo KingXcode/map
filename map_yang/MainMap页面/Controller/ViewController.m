@@ -4,21 +4,24 @@
 //
 //  Created by niesiyang on 2017/11/7.
 //  Copyright © 2017年 niesiyang. All rights reserved.
-//
+//  default_icon_c5_normal.png +
+//  default_icon_c6_normal.png -
 
 #import "ViewController.h"
 #import <MAMapKit/MAMapKit.h>
 #import <AMapFoundationKit/AMapFoundationKit.h>
 #import <Masonry.h>
 #import "HTProgressHUD.h"
-
+#import "HTColor.h"
 #import "HTMainMapInfoView.h"
+#import <RESideMenu.h>
 
 
 @interface ViewController ()<MAMapViewDelegate>
 
 @property (nonatomic,weak) MAMapView *mapView;
 @property (nonatomic,strong) HTMainMapInfoView * infoView;
+@property (nonatomic,strong) HTMainMapInfoView * scaleView;
 
 @end
 
@@ -27,6 +30,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.view.backgroundColor = [HTColor ht_whiteColor];
 
     //初始化地图
     [self addMapView];
@@ -38,7 +42,8 @@
 
 -(void)addInfoView
 {
-    HTMainMapInfoView *infoView = [[HTMainMapInfoView alloc]initWithFrame:CGRectZero];
+    
+    HTMainMapInfoView *infoView = [[HTMainMapInfoView alloc]initWithTopImage:[UIImage imageNamed:@"info"] bottomImage:[UIImage imageNamed:@"location"]];
     self.infoView = infoView;
     [self.view addSubview:infoView];
     [infoView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -59,6 +64,30 @@
             [__self showSelfLocation];
         }
     }];
+    
+    
+    HTMainMapInfoView *scaleView = [[HTMainMapInfoView alloc]initWithTopImage:[UIImage imageNamed:@"add"] bottomImage:[UIImage imageNamed:@"move"]];
+    self.scaleView = scaleView;
+    [self.view addSubview:scaleView];
+    [scaleView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(infoView.mas_bottom).mas_offset(18);
+        make.right.equalTo(self.mapView).mas_offset(-10);
+        make.width.equalTo(@(44));
+        make.height.equalTo(@(88));
+    }];
+    
+    [scaleView setClickedInfoBtn:^(NSInteger index) {
+        if (index == 0)
+        {
+            [__self.mapView setZoomLevel:__self.mapView.zoomLevel+1 animated:YES];
+        }
+        else if (index == 1)
+        {
+            [__self.mapView setZoomLevel:__self.mapView.zoomLevel-1 animated:YES];
+        }
+        
+    }];
+    
 }
 
 /**
@@ -73,6 +102,8 @@
     mapView.showsScale = NO;
     mapView.zoomLevel = 16;
     mapView.delegate = self;
+    [mapView setShowsCompass:YES];
+    [mapView setCompassOrigin:CGPointMake(10, 10)];
     [self.view addSubview:mapView];
     self.mapView = mapView;
     
@@ -124,7 +155,7 @@
 //点击详细信息按钮
 -(void)showInfoView
 {
-    
+    [self.sideMenuViewController presentRightMenuViewController];
 }
 
 
@@ -139,6 +170,26 @@
 - (void)mapView:(MAMapView *)mapView didSingleTappedAtCoordinate:(CLLocationCoordinate2D)coordinate
 {
     [HTProgressHUD showMessage:@"点击了地图" forView:self.view];
+}
+
+/**
+ * @brief 地图将要发生缩放时调用此接口
+ * @param mapView       地图view
+ * @param wasUserAction 标识是否是用户动作
+ */
+- (void)mapView:(MAMapView *)mapView mapWillZoomByUser:(BOOL)wasUserAction
+{
+    [mapView setShowsScale:YES];
+}
+
+/**
+ * @brief 地图缩放结束后调用此接口
+ * @param mapView       地图view
+ * @param wasUserAction 标识是否是用户动作
+ */
+- (void)mapView:(MAMapView *)mapView mapDidZoomByUser:(BOOL)wasUserAction
+{
+    [mapView setShowsScale:NO];
 }
 
 

@@ -8,6 +8,8 @@
 
 #import "AppDelegate.h"
 #import <AMapFoundationKit/AMapFoundationKit.h>
+#import "ViewController.h"
+#import "HTRightMenuViewController.h"
 
 @interface AppDelegate ()
 
@@ -20,6 +22,33 @@
     // Override point for customization after application launch.
     
     [AMapServices sharedServices].apiKey = @"d1c534625aa81584a24cbd3dc951688b";
+    
+    
+    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    
+    ViewController *vc = [[ViewController alloc]init];
+    HTRightMenuViewController *rightVc = [[HTRightMenuViewController alloc]init];
+    
+    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:vc];
+    
+    RESideMenu *sideMenuViewController = [[RESideMenu alloc] initWithContentViewController:navigationController
+                                                                    leftMenuViewController:nil
+                                                                   rightMenuViewController:rightVc];
+    sideMenuViewController.menuPreferredStatusBarStyle = 1; // UIStatusBarStyleLightContent
+    sideMenuViewController.contentViewShadowColor = [UIColor blackColor];
+    sideMenuViewController.contentViewShadowOffset = CGSizeMake(0, 0);
+    sideMenuViewController.contentViewShadowOpacity = 0.6;
+    sideMenuViewController.contentViewShadowRadius = 3;
+    sideMenuViewController.contentViewShadowEnabled = YES;
+    sideMenuViewController.scaleMenuView = NO;
+    sideMenuViewController.scaleContentView = NO;
+    sideMenuViewController.bouncesHorizontally = NO;
+    self.sideMenuViewController = sideMenuViewController;
+    self.window.rootViewController = sideMenuViewController;
+    
+    self.window.backgroundColor = [UIColor whiteColor];
+    [self.window makeKeyAndVisible];
+    
     
     return YES;
 }

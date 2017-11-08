@@ -17,5 +17,6 @@
 
 +(UIColor *)ht_whiteColor;
 +(UIColor *)ht_lineColor;
-
++(UIColor *)ht_clearColor;
++(UIColor *)ht_emptyColor;
 @end

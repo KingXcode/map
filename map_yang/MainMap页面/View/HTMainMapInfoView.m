@@ -16,24 +16,25 @@
 
 @implementation HTMainMapInfoView
 
-- (instancetype)initWithFrame:(CGRect)frame
+- (instancetype)initWithTopImage:(UIImage *)topImage bottomImage:(UIImage *)bottomImage
 {
-    self = [super initWithFrame:frame];
+    self = [super init];
     if (self) {
-        [self creatUI];
+        [self creatUIWithTopImage:topImage bottomImage:bottomImage];
     }
     return self;
 }
-
--(void)creatUI
+//[UIImage imageNamed:@"info"]
+//[UIImage imageNamed:@"location"]
+-(void)creatUIWithTopImage:(UIImage *)topImage bottomImage:(UIImage *)bottomImage
 {
     UIButton *top = [UIButton buttonWithType:UIButtonTypeCustom];
-    [top setImage:[UIImage imageNamed:@"info"] forState:UIControlStateNormal];
+    [top setImage:topImage forState:UIControlStateNormal];
     top.backgroundColor = [HTColor ht_whiteColor];
     [self addSubview:top];
     
     UIButton *bottom = [UIButton buttonWithType:UIButtonTypeCustom];
-    [bottom setImage:[UIImage imageNamed:@"location"] forState:UIControlStateNormal];
+    [bottom setImage:bottomImage forState:UIControlStateNormal];
     bottom.backgroundColor = [HTColor ht_whiteColor];
     [self addSubview:bottom];
     
@@ -61,7 +62,6 @@
     self.layer.borderWidth = 0.5;
     self.layer.borderColor = [HTColor ht_lineColor].CGColor;
     self.clipsToBounds = YES;
-    
     
     [top addTarget:self action:@selector(clickedtopBtn) forControlEvents:UIControlEventTouchUpInside];
     [bottom addTarget:self action:@selector(clickedbottomBtn) forControlEvents:UIControlEventTouchUpInside];

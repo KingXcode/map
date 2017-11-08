@@ -12,4 +12,6 @@
 
 @property (nonatomic, copy) void(^clickedInfoBtn)(NSInteger indx);
 
+- (instancetype)initWithTopImage:(UIImage *)topImage bottomImage:(UIImage *)bottomImage;
+
 @end
