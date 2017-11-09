@@ -6,11 +6,24 @@
 //  Copyright © 2017年 niesiyang. All rights reserved.
 //
 
+/*
+ 
+ MAMapTypeStandard = 0,  ///< 普通地图
+ MAMapTypeSatellite,     ///< 卫星地图
+ MAMapTypeStandardNight, ///< 夜间视图
+ MAMapTypeNavi,          ///< 导航视图
+ MAMapTypeBus            ///< 公交视图
+ 
+ */
+
 #import "HTRightMenuViewController.h"
 #import "HTColor.h"
 #import <Masonry.h>
+#import "HTMapSelectTypeCell.h"
+#import "HTMapManager.h"
+#import <RESideMenu.h>
 
-@interface HTRightMenuViewController ()<UITableViewDelegate,UITableViewDataSource>
+@interface HTRightMenuViewController ()<UITableViewDelegate,UITableViewDataSource,HTMapSelectTypeCellDelegate>
 @property (nonatomic,weak) UITableView * tableView;
 @property (nonatomic,copy) NSArray * titleArrays;
 @end
@@ -71,6 +84,13 @@
     }];
 }
 
+#pragma -mark- cell delegate
+-(void)didselectType:(NSInteger)type
+{
+    [HTMapManager sharedManager].mapView.mapType = type;
+    [self.sideMenuViewController hideMenuViewController];
+}
+
 #pragma -mark- tableView delegate  datasuoce
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
@@ -93,6 +113,17 @@
 }
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    
+    if (indexPath.section == 0)
+    {
+        HTMapSelectTypeCell *typeCell = [tableView dequeueReusableCellWithIdentifier:@"HTMapSelectTypeCell"];
+        if (typeCell == nil) {
+            typeCell = [[HTMapSelectTypeCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"HTMapSelectTypeCell"];
+        }
+        typeCell.delegate = self;
+        return typeCell;
+    }
+    
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
     if (cell == nil) {
         cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
@@ -105,7 +136,7 @@
 {
     if (indexPath.section == 0)
     {
-        return 150;
+        return 88;
     }
     else if (indexPath.section == 1)
     {

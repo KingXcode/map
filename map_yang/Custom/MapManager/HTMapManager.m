@@ -43,13 +43,12 @@ static HTMapManager *_instance;
     return _instance;
 }
 
-- (instancetype)init
+-(MAMapView *)mapView
 {
-    self = [super init];
-    if (self) {
-        _locationManager = [[AMapLocationManager alloc]init];
+    if (_mapView == nil) {
+        _mapView = [[MAMapView alloc]initWithFrame:[UIScreen mainScreen].bounds];
     }
-    return self;
+    return _mapView;
 }
 
 

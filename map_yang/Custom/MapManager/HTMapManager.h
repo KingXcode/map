@@ -16,6 +16,6 @@
 
 +(instancetype)sharedManager;
 
-@property (nonatomic,strong,readonly)AMapLocationManager *locationManager;
+@property (nonatomic,strong)MAMapView *mapView;
 
 @end

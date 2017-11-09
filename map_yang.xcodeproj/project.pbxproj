@@ -19,6 +19,9 @@
 		CBE6F8B71FB0D01500DD346B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CBE6F8B51FB0D01500DD346B /* LaunchScreen.storyboard */; };
 		CBE6F8BA1FB0D01500DD346B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CBE6F8B91FB0D01500DD346B /* main.m */; };
 		FBFBA2081FB2C53300B83ACC /* HTMainMapInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = FBFBA2071FB2C53300B83ACC /* HTMainMapInfoView.m */; };
+		FBFBA2101FB43FB100B83ACC /* HTMapSelectTypeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FBFBA20F1FB43FB100B83ACC /* HTMapSelectTypeCell.m */; };
+		FBFBA2141FB4518900B83ACC /* HTMapTypeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FBFBA2121FB4518900B83ACC /* HTMapTypeCell.m */; };
+		FBFBA2151FB4518900B83ACC /* HTMapTypeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FBFBA2131FB4518900B83ACC /* HTMapTypeCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -45,6 +48,11 @@
 		CBE6F8B91FB0D01500DD346B /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		FBFBA2061FB2C53300B83ACC /* HTMainMapInfoView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HTMainMapInfoView.h; sourceTree = "<group>"; };
 		FBFBA2071FB2C53300B83ACC /* HTMainMapInfoView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HTMainMapInfoView.m; sourceTree = "<group>"; };
+		FBFBA20E1FB43FB100B83ACC /* HTMapSelectTypeCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HTMapSelectTypeCell.h; sourceTree = "<group>"; };
+		FBFBA20F1FB43FB100B83ACC /* HTMapSelectTypeCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HTMapSelectTypeCell.m; sourceTree = "<group>"; };
+		FBFBA2111FB4518900B83ACC /* HTMapTypeCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HTMapTypeCell.h; sourceTree = "<group>"; };
+		FBFBA2121FB4518900B83ACC /* HTMapTypeCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HTMapTypeCell.m; sourceTree = "<group>"; };
+		FBFBA2131FB4518900B83ACC /* HTMapTypeCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HTMapTypeCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -179,6 +187,11 @@
 		FBFBA2091FB3DB6000B83ACC /* Cell */ = {
 			isa = PBXGroup;
 			children = (
+				FBFBA20E1FB43FB100B83ACC /* HTMapSelectTypeCell.h */,
+				FBFBA20F1FB43FB100B83ACC /* HTMapSelectTypeCell.m */,
+				FBFBA2111FB4518900B83ACC /* HTMapTypeCell.h */,
+				FBFBA2121FB4518900B83ACC /* HTMapTypeCell.m */,
+				FBFBA2131FB4518900B83ACC /* HTMapTypeCell.xib */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -256,6 +269,7 @@
 			files = (
 				CBE6F8B71FB0D01500DD346B /* LaunchScreen.storyboard in Resources */,
 				CBE6F8B41FB0D01500DD346B /* Assets.xcassets in Resources */,
+				FBFBA2151FB4518900B83ACC /* HTMapTypeCell.xib in Resources */,
 				CBE6F8B21FB0D01500DD346B /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -325,12 +339,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				CBE6F8AF1FB0D01500DD346B /* ViewController.m in Sources */,
+				FBFBA2101FB43FB100B83ACC /* HTMapSelectTypeCell.m in Sources */,
 				CBE6F8BA1FB0D01500DD346B /* main.m in Sources */,
 				CB1BDB711FB1FF9A00228A15 /* HTMapManager.m in Sources */,
 				CB1BDB7A1FB21A4E00228A15 /* HTColor.m in Sources */,
 				CBB3D76F1FB34C8000813783 /* HTRightMenuViewController.m in Sources */,
 				FBFBA2081FB2C53300B83ACC /* HTMainMapInfoView.m in Sources */,
 				CBE6F8AC1FB0D01500DD346B /* AppDelegate.m in Sources */,
+				FBFBA2141FB4518900B83ACC /* HTMapTypeCell.m in Sources */,
 				CB1BDB751FB2178300228A15 /* HTProgressHUD.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -15,17 +15,29 @@
 #import "HTColor.h"
 #import "HTMainMapInfoView.h"
 #import <RESideMenu.h>
+#import "HTMapManager.h"
 
 
-@interface ViewController ()<MAMapViewDelegate>
+@interface ViewController ()<MAMapViewDelegate,AMapSearchDelegate>
 
 @property (nonatomic,weak) MAMapView *mapView;
+@property (nonatomic,strong) AMapSearchAPI * search;
+
 @property (nonatomic,strong) HTMainMapInfoView * infoView;
 @property (nonatomic,strong) HTMainMapInfoView * scaleView;
 
 @end
 
 @implementation ViewController
+
+-(AMapSearchAPI *)search
+{
+    if (_search == nil) {
+        _search = [[AMapSearchAPI alloc]init];
+        _search.delegate = self;
+    }
+    return _search;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -92,21 +104,21 @@
 
 /**
  初始化地图
+
  */
 -(void)addMapView
 {
     ///初始化地图
-    MAMapView *mapView = [[MAMapView alloc] initWithFrame:self.view.bounds];
+    
+    MAMapView *mapView = [HTMapManager sharedManager].mapView;
     mapView.mapType = MAMapTypeStandard;
     mapView.showsCompass = NO;
     mapView.showsScale = NO;
     mapView.zoomLevel = 16;
     mapView.delegate = self;
-    [mapView setShowsCompass:YES];
-    [mapView setCompassOrigin:CGPointMake(10, 10)];
+    mapView.touchPOIEnabled = YES;
     [self.view addSubview:mapView];
     self.mapView = mapView;
-    
     
     
     [mapView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -169,7 +181,7 @@
  */
 - (void)mapView:(MAMapView *)mapView didSingleTappedAtCoordinate:(CLLocationCoordinate2D)coordinate
 {
-    [HTProgressHUD showMessage:@"点击了地图" forView:self.view];
+
 }
 
 /**
@@ -190,6 +202,22 @@
 - (void)mapView:(MAMapView *)mapView mapDidZoomByUser:(BOOL)wasUserAction
 {
     [mapView setShowsScale:NO];
+}
+
+/**
+ * @brief 当touchPOIEnabled == YES时，单击地图使用该回调获取POI信息
+ * @param mapView 地图View
+ * @param pois 获取到的poi数组(由MATouchPoi组成)
+ */
+-(void)mapView:(MAMapView *)mapView didTouchPois:(NSArray *)pois
+{
+
+    if (pois.count>0) {
+        MATouchPoi *poi = pois.firstObject;
+        AMapPOIIDSearchRequest *request = [[AMapPOIIDSearchRequest alloc]init];
+        [self.search AMapPOIIDSearch:request];
+    }
+    
 }
 
 
