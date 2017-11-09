@@ -107,18 +107,11 @@
 		CBB3D76C1FB34C5B00813783 /* rightController */ = {
 			isa = PBXGroup;
 			children = (
+				FBFBA2091FB3DB6000B83ACC /* Cell */,
 				CBB3D76D1FB34C8000813783 /* HTRightMenuViewController.h */,
 				CBB3D76E1FB34C8000813783 /* HTRightMenuViewController.m */,
-				CBB3D7701FB3564C00813783 /* Cell */,
 			);
 			path = rightController;
-			sourceTree = "<group>";
-		};
-		CBB3D7701FB3564C00813783 /* Cell */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Cell;
 			sourceTree = "<group>";
 		};
 		CBE6F89E1FB0D01500DD346B = {
@@ -181,6 +174,13 @@
 				FBFBA2071FB2C53300B83ACC /* HTMainMapInfoView.m */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		FBFBA2091FB3DB6000B83ACC /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Cell;
 			sourceTree = "<group>";
 		};
 		FE5C3B7321D3293472A1C115 /* Pods */ = {
