@@ -20,17 +20,13 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
-    
     [AMapServices sharedServices].apiKey = @"d1c534625aa81584a24cbd3dc951688b";
     
     
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    
     ViewController *vc = [[ViewController alloc]init];
     HTRightMenuViewController *rightVc = [[HTRightMenuViewController alloc]init];
-    
     UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:vc];
-    
     RESideMenu *sideMenuViewController = [[RESideMenu alloc] initWithContentViewController:navigationController
                                                                     leftMenuViewController:nil
                                                                    rightMenuViewController:rightVc];

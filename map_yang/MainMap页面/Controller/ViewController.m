@@ -215,9 +215,35 @@
     if (pois.count>0) {
         MATouchPoi *poi = pois.firstObject;
         AMapPOIIDSearchRequest *request = [[AMapPOIIDSearchRequest alloc]init];
+        request.uid = poi.uid;
         [self.search AMapPOIIDSearch:request];
     }
     
+}
+
+
+
+
+
+#pragma -mark- AMapSearchAPI delegate
+/**
+ * @brief 当请求发生错误时，会调用代理的此方法.
+ * @param request 发生错误的请求.
+ * @param error   返回的错误.
+ */
+- (void)AMapSearchRequest:(id)request didFailWithError:(NSError *)error
+{
+    NSLog(@"--------:%@",error);
+}
+
+/**
+ * @brief POI查询回调函数
+ * @param request  发起的请求，具体字段参考 AMapPOISearchBaseRequest 及其子类。
+ * @param response 响应结果，具体字段参考 AMapPOISearchResponse 。
+ */
+- (void)onPOISearchDone:(AMapPOISearchBaseRequest *)request response:(AMapPOISearchResponse *)response
+{
+    NSLog(@"--------:%@",response);
 }
 
 

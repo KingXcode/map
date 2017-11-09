@@ -21,22 +21,22 @@
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="AB0-uo-0ZQ">
-                        <rect key="frame" x="8" y="12" width="72" height="48"/>
+                        <rect key="frame" x="8" y="8" width="72" height="56"/>
                         <color key="backgroundColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstAttribute="width" secondItem="AB0-uo-0ZQ" secondAttribute="height" multiplier="3:2" id="VWH-cX-Hlj"/>
+                            <constraint firstAttribute="width" secondItem="AB0-uo-0ZQ" secondAttribute="height" multiplier="201:156" id="VWH-cX-Hlj"/>
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="---" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="53n-mK-n6O">
-                        <rect key="frame" x="3" y="64" width="82" height="15"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <rect key="frame" x="3" y="68" width="82" height="12"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="10"/>
                         <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
             </view>
             <constraints>
-                <constraint firstItem="AB0-uo-0ZQ" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="12" id="lhF-wz-Nco"/>
+                <constraint firstItem="AB0-uo-0ZQ" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="8" id="lhF-wz-Nco"/>
                 <constraint firstItem="53n-mK-n6O" firstAttribute="top" secondItem="AB0-uo-0ZQ" secondAttribute="bottom" constant="4" id="nER-gT-Elw"/>
                 <constraint firstItem="53n-mK-n6O" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="3" id="qCg-hz-mIe"/>
                 <constraint firstItem="AB0-uo-0ZQ" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="8" id="zDV-WI-VUI"/>

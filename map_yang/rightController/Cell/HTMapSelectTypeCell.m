@@ -41,12 +41,12 @@
 -(NSArray *)dataArray
 {
     if (_dataArray == nil) {
-        HTMapSelectTypeModel *model_0 = [[HTMapSelectTypeModel alloc]initWithName:@"普通地图" AndType:@(0) AndImageName:@""];
-        HTMapSelectTypeModel *model_1 = [[HTMapSelectTypeModel alloc]initWithName:@"卫星地图" AndType:@(1) AndImageName:@""];
-        HTMapSelectTypeModel *model_2 = [[HTMapSelectTypeModel alloc]initWithName:@"夜间视图" AndType:@(2) AndImageName:@""];
-        HTMapSelectTypeModel *model_3 = [[HTMapSelectTypeModel alloc]initWithName:@"导航视图" AndType:@(3) AndImageName:@""];
-        HTMapSelectTypeModel *model_4 = [[HTMapSelectTypeModel alloc]initWithName:@"公交视图" AndType:@(4) AndImageName:@""];
-        _dataArray = @[model_0,model_1,model_2,model_3,model_4];
+        HTMapSelectTypeModel *model_0 = [[HTMapSelectTypeModel alloc]initWithName:@"普通地图" AndType:@(0) AndImageName:@"map_0"];
+        HTMapSelectTypeModel *model_1 = [[HTMapSelectTypeModel alloc]initWithName:@"卫星地图" AndType:@(1) AndImageName:@"map_1"];
+        HTMapSelectTypeModel *model_2 = [[HTMapSelectTypeModel alloc]initWithName:@"夜间视图" AndType:@(2) AndImageName:@"map_2"];
+//        HTMapSelectTypeModel *model_3 = [[HTMapSelectTypeModel alloc]initWithName:@"导航视图" AndType:@(3) AndImageName:@""];
+        HTMapSelectTypeModel *model_4 = [[HTMapSelectTypeModel alloc]initWithName:@"公交视图" AndType:@(4) AndImageName:@"map_4"];
+        _dataArray = @[model_0,model_1,model_2,model_4];
     }
     return _dataArray;
 }
@@ -70,6 +70,8 @@
     collectionView.delegate = self;
     collectionView.dataSource = self;
     collectionView.backgroundColor = [UIColor whiteColor];
+    collectionView.showsVerticalScrollIndicator = NO;
+    collectionView.showsHorizontalScrollIndicator = NO;
     [collectionView registerNib:[UINib nibWithNibName:@"HTMapTypeCell" bundle:nil] forCellWithReuseIdentifier:@"HTMapTypeCell"];
     
     self.flowLayout = flowLayout;
