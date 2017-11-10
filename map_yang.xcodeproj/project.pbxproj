@@ -18,6 +18,9 @@
 		CBE6F8B41FB0D01500DD346B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CBE6F8B31FB0D01500DD346B /* Assets.xcassets */; };
 		CBE6F8B71FB0D01500DD346B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CBE6F8B51FB0D01500DD346B /* LaunchScreen.storyboard */; };
 		CBE6F8BA1FB0D01500DD346B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CBE6F8B91FB0D01500DD346B /* main.m */; };
+		FB1B49A71FB54E7A001A1DA3 /* HTPointAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = FB1B49A61FB54E7A001A1DA3 /* HTPointAnnotation.m */; };
+		FB1B49AE1FB58723001A1DA3 /* HTLiveWeatherInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = FB1B49AD1FB58723001A1DA3 /* HTLiveWeatherInfoView.m */; };
+		FB1B49B01FB58B6F001A1DA3 /* HTLiveWeatherInfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = FB1B49AF1FB58B6F001A1DA3 /* HTLiveWeatherInfoView.xib */; };
 		FBFBA2081FB2C53300B83ACC /* HTMainMapInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = FBFBA2071FB2C53300B83ACC /* HTMainMapInfoView.m */; };
 		FBFBA2101FB43FB100B83ACC /* HTMapSelectTypeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FBFBA20F1FB43FB100B83ACC /* HTMapSelectTypeCell.m */; };
 		FBFBA2141FB4518900B83ACC /* HTMapTypeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FBFBA2121FB4518900B83ACC /* HTMapTypeCell.m */; };
@@ -46,6 +49,11 @@
 		CBE6F8B61FB0D01500DD346B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CBE6F8B81FB0D01500DD346B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CBE6F8B91FB0D01500DD346B /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		FB1B49A51FB54E7A001A1DA3 /* HTPointAnnotation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HTPointAnnotation.h; sourceTree = "<group>"; };
+		FB1B49A61FB54E7A001A1DA3 /* HTPointAnnotation.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HTPointAnnotation.m; sourceTree = "<group>"; };
+		FB1B49AC1FB58723001A1DA3 /* HTLiveWeatherInfoView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HTLiveWeatherInfoView.h; sourceTree = "<group>"; };
+		FB1B49AD1FB58723001A1DA3 /* HTLiveWeatherInfoView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HTLiveWeatherInfoView.m; sourceTree = "<group>"; };
+		FB1B49AF1FB58B6F001A1DA3 /* HTLiveWeatherInfoView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HTLiveWeatherInfoView.xib; sourceTree = "<group>"; };
 		FBFBA2061FB2C53300B83ACC /* HTMainMapInfoView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HTMainMapInfoView.h; sourceTree = "<group>"; };
 		FBFBA2071FB2C53300B83ACC /* HTMainMapInfoView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HTMainMapInfoView.m; sourceTree = "<group>"; };
 		FBFBA20E1FB43FB100B83ACC /* HTMapSelectTypeCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HTMapSelectTypeCell.h; sourceTree = "<group>"; };
@@ -146,6 +154,7 @@
 				CB1BDB761FB21A0D00228A15 /* Custom */,
 				CBE6F8AA1FB0D01500DD346B /* AppDelegate.h */,
 				CBE6F8AB1FB0D01500DD346B /* AppDelegate.m */,
+				FB1B49A91FB586EB001A1DA3 /* Weather */,
 				CBB3D76C1FB34C5B00813783 /* rightController */,
 				FBFBA2031FB2C48000B83ACC /* MainMap页面 */,
 				CBE6F8B01FB0D01500DD346B /* Main.storyboard */,
@@ -157,9 +166,45 @@
 			path = map_yang;
 			sourceTree = "<group>";
 		};
+		FB1B49A81FB54E7F001A1DA3 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				FB1B49A51FB54E7A001A1DA3 /* HTPointAnnotation.h */,
+				FB1B49A61FB54E7A001A1DA3 /* HTPointAnnotation.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		FB1B49A91FB586EB001A1DA3 /* Weather */ = {
+			isa = PBXGroup;
+			children = (
+				FB1B49AB1FB58700001A1DA3 /* Controller */,
+				FB1B49AA1FB586FA001A1DA3 /* View */,
+			);
+			path = Weather;
+			sourceTree = "<group>";
+		};
+		FB1B49AA1FB586FA001A1DA3 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				FB1B49AC1FB58723001A1DA3 /* HTLiveWeatherInfoView.h */,
+				FB1B49AD1FB58723001A1DA3 /* HTLiveWeatherInfoView.m */,
+				FB1B49AF1FB58B6F001A1DA3 /* HTLiveWeatherInfoView.xib */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		FB1B49AB1FB58700001A1DA3 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
 		FBFBA2031FB2C48000B83ACC /* MainMap页面 */ = {
 			isa = PBXGroup;
 			children = (
+				FB1B49A81FB54E7F001A1DA3 /* Model */,
 				FBFBA2051FB2C4B300B83ACC /* View */,
 				FBFBA2041FB2C4AD00B83ACC /* Controller */,
 			);
@@ -271,6 +316,7 @@
 				CBE6F8B41FB0D01500DD346B /* Assets.xcassets in Resources */,
 				FBFBA2151FB4518900B83ACC /* HTMapTypeCell.xib in Resources */,
 				CBE6F8B21FB0D01500DD346B /* Main.storyboard in Resources */,
+				FB1B49B01FB58B6F001A1DA3 /* HTLiveWeatherInfoView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -338,6 +384,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FB1B49A71FB54E7A001A1DA3 /* HTPointAnnotation.m in Sources */,
+				FB1B49AE1FB58723001A1DA3 /* HTLiveWeatherInfoView.m in Sources */,
 				CBE6F8AF1FB0D01500DD346B /* ViewController.m in Sources */,
 				FBFBA2101FB43FB100B83ACC /* HTMapSelectTypeCell.m in Sources */,
 				CBE6F8BA1FB0D01500DD346B /* main.m in Sources */,

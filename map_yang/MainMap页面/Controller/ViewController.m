@@ -8,14 +8,17 @@
 //  default_icon_c6_normal.png -
 
 #import "ViewController.h"
+#import <RESideMenu.h>
 #import <MAMapKit/MAMapKit.h>
 #import <AMapFoundationKit/AMapFoundationKit.h>
 #import <Masonry.h>
+
 #import "HTProgressHUD.h"
 #import "HTColor.h"
 #import "HTMainMapInfoView.h"
-#import <RESideMenu.h>
 #import "HTMapManager.h"
+#import "HTPointAnnotation.h"
+#import "HTLiveWeatherInfoView.h"
 
 
 @interface ViewController ()<MAMapViewDelegate,AMapSearchDelegate>
@@ -23,8 +26,22 @@
 @property (nonatomic,weak) MAMapView *mapView;
 @property (nonatomic,strong) AMapSearchAPI * search;
 
+
 @property (nonatomic,strong) HTMainMapInfoView * infoView;
 @property (nonatomic,strong) HTMainMapInfoView * scaleView;
+
+@property (nonatomic,weak) HTLiveWeatherInfoView * weatherView;
+
+
+//当前位置实时天气信息
+@property (nonatomic,strong) AMapLocalWeatherLive * liveWeather;
+
+//天气预报---(目前还没有请求这个数据,当前只做实时天气的view,我的想法是以后点击实时天气跳转页面来展示预报天气)
+@property (nonatomic,strong) AMapLocalWeatherForecast * forecastWeather;
+
+//点击地图poi信息 获取到的点
+@property (nonatomic, strong) MAPointAnnotation *poiAnnotation;
+
 
 @end
 
@@ -39,18 +56,29 @@
     return _search;
 }
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
     
     self.view.backgroundColor = [HTColor ht_whiteColor];
 
     //初始化地图
     [self addMapView];
-    
 
     //右上角的按钮
     [self addInfoView];
+    
+    //添加天气view
+    [self addWeatherView];
 }
+
+-(void)addWeatherView
+{
+    HTLiveWeatherInfoView *weatherView = [HTLiveWeatherInfoView loadView];
+    [self.view addSubview:weatherView];
+    self.weatherView = weatherView;
+}
+
 
 -(void)addInfoView
 {
@@ -99,7 +127,6 @@
         }
         
     }];
-    
 }
 
 /**
@@ -119,6 +146,13 @@
     mapView.touchPOIEnabled = YES;
     [self.view addSubview:mapView];
     self.mapView = mapView;
+    
+    MAUserLocationRepresentation *represent = [[MAUserLocationRepresentation alloc] init];
+    represent.showsAccuracyRing = YES;
+    represent.showsHeadingIndicator = YES;
+    represent.lineWidth = 1.f;
+    [self.mapView updateUserLocationRepresentation:represent];
+    
     
     
     [mapView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -156,24 +190,36 @@
 }
 
 
-//显示自己的位置
--(void)showSelfLocation
-{
-    [self.mapView setZoomLevel:16 animated:YES];
-    [self.mapView setCenterCoordinate:self.mapView.userLocation.coordinate animated:YES];
-    [self.mapView setRotationDegree:0 animated:YES duration:0.5];
-}
 
-//点击详细信息按钮
--(void)showInfoView
-{
-    [self.sideMenuViewController presentRightMenuViewController];
-}
 
+//获取当前城市逆编码信息
+- (void)searchLocationReGeoCode
+{
+    AMapReGeocodeSearchRequest *request = [[AMapReGeocodeSearchRequest alloc] init];
+    request.location = [AMapGeoPoint locationWithLatitude:self.mapView.userLocation.location.coordinate.latitude longitude:self.mapView.userLocation.location.coordinate.longitude];
+    [self.search AMapReGoecodeSearch:request];
+}
 
 
 
 #pragma -mark- mapviewdelegate
+
+/**
+ * @brief 位置或者设备方向更新后，会调用此函数
+ * @param mapView 地图View
+ * @param userLocation 用户定位信息(包括位置与设备方向等数据)
+ * @param updatingLocation 标示是否是location数据更新, YES:location数据更新 NO:heading数据更新
+ */
+- (void)mapView:(MAMapView *)mapView didUpdateUserLocation:(MAUserLocation *)userLocation updatingLocation:(BOOL)updatingLocation
+{
+    if (updatingLocation)
+    {//定位成功更新
+        if (self.liveWeather == nil) {
+            [self searchLocationReGeoCode];
+        }
+    }
+}
+
 /**
  * @brief 单击地图回调，返回经纬度
  * @param mapView 地图View
@@ -181,7 +227,7 @@
  */
 - (void)mapView:(MAMapView *)mapView didSingleTappedAtCoordinate:(CLLocationCoordinate2D)coordinate
 {
-
+    [self.weatherView hiddenWeatherView];
 }
 
 /**
@@ -211,14 +257,74 @@
  */
 -(void)mapView:(MAMapView *)mapView didTouchPois:(NSArray *)pois
 {
-
     if (pois.count>0) {
+        
+        MATouchPoi *touchPoi = pois.firstObject;
+        HTPointAnnotation *annotation = [[HTPointAnnotation alloc] init];
+        annotation.coordinate = touchPoi.coordinate;
+        annotation.title      = touchPoi.name;
+        annotation.pointType  = 0;
+        [self.mapView removeAnnotation:self.poiAnnotation];
+        [self.mapView addAnnotation:annotation];
+        [self.mapView selectAnnotation:annotation animated:YES];
+        self.poiAnnotation = annotation;
+        [self.mapView setCenterCoordinate:annotation.coordinate animated:YES];
+
+        
         MATouchPoi *poi = pois.firstObject;
         AMapPOIIDSearchRequest *request = [[AMapPOIIDSearchRequest alloc]init];
         request.uid = poi.uid;
         [self.search AMapPOIIDSearch:request];
+        
     }
+}
+
+/**
+ * @brief 根据anntation生成对应的View。
+ 
+ 注意：5.1.0后由于定位蓝点增加了平滑移动功能，如果在开启定位的情况先添加annotation，需要在此回调方法中判断annotation是否为MAUserLocation，从而返回正确的View。
+ if ([annotation isKindOfClass:[MAUserLocation class]]) {
+ return nil;
+ }
+ 
+ * @param mapView 地图View
+ * @param annotation 指定的标注
+ * @return 生成的标注View
+ */
+- (MAAnnotationView *)mapView:(MAMapView *)mapView viewForAnnotation:(id<MAAnnotation>)annotation
+{
+    if ([annotation isKindOfClass:[HTPointAnnotation class]])
+    {
+        HTPointAnnotation *anno = (HTPointAnnotation *)annotation;
+        if (anno.pointType == 0)
+        {
+            return [self getPoiAnnotationViewWithMapView:mapView andAnnotation:anno];
+        }
+        else
+        {
+            return nil;
+        }
+    }
+    return nil;
+}
+
+-(MAPinAnnotationView *)getPoiAnnotationViewWithMapView:(MAMapView *)mapView andAnnotation:(HTPointAnnotation *)annotation
+{
+    static NSString *touchPoiReuseIndetifier = @"touchPoiReuseIndetifier";
+    MAPinAnnotationView *annotationView = (MAPinAnnotationView*)[mapView dequeueReusableAnnotationViewWithIdentifier:touchPoiReuseIndetifier];
+    if (annotationView == nil)
+    {
+        annotationView = [[MAPinAnnotationView alloc] initWithAnnotation:annotation
+                                                         reuseIdentifier:touchPoiReuseIndetifier];
+    }
+    annotationView.canShowCallout = YES;
+    annotationView.animatesDrop   = NO;
+    annotationView.draggable      = NO;
+    annotationView.image = [UIImage imageNamed:@"b_poi_hl"];
+    annotationView.layer.anchorPoint = CGPointMake(0.5, 0.9189);
+    annotationView.bounds = CGRectMake(0, 0, 44, 54);
     
+    return annotationView;
 }
 
 
@@ -246,11 +352,83 @@
     NSLog(@"--------:%@",response);
 }
 
+/**
+ * @brief 逆地理编码查询回调函数
+ * @param request  发起的请求，具体字段参考 AMapReGeocodeSearchRequest 。
+ * @param response 响应结果，具体字段参考 AMapReGeocodeSearchResponse 。
+ */
+-(void)onReGeocodeSearchDone:(AMapReGeocodeSearchRequest *)request response:(AMapReGeocodeSearchResponse *)response
+{
+    AMapWeatherSearchRequest *weatherrequest = [[AMapWeatherSearchRequest alloc] init];
+    weatherrequest.city                      = response.regeocode.addressComponent.city;
+    weatherrequest.type                      = AMapWeatherTypeLive;
+    [self.search AMapWeatherSearch:weatherrequest];
+}
 
+/**
+ * @brief 天气查询回调
+ * @param request  发起的请求，具体字段参考 AMapWeatherSearchRequest 。
+ * @param response 响应结果，具体字段参考 AMapWeatherSearchResponse 。
+ */
+- (void)onWeatherSearchDone:(AMapWeatherSearchRequest *)request response:(AMapWeatherSearchResponse *)response
+{
+    if (request.type == AMapWeatherTypeLive)
+    {
+        if (response.lives.count == 0)
+        {
+            return;
+        }
+        AMapLocalWeatherLive *liveWeather = [response.lives firstObject];
+        if (liveWeather != nil)
+        {
+            self.liveWeather = liveWeather;
+            [self.weatherView updateLiveWeather:liveWeather];
+        }
+    }
+    else
+    {
+        if (response.forecasts.count == 0)
+        {
+            return;
+        }
+        AMapLocalWeatherForecast *forecast = [response.forecasts firstObject];
+        
+        if (forecast != nil)
+        {
+            self.forecastWeather = forecast;
+        }
+    }
+}
+
+
+
+
+#pragma -mark- 点击事件
+
+
+
+
+//显示自己的位置
+-(void)showSelfLocation
+{
+    [self.mapView removeAnnotation:self.poiAnnotation];
+    self.poiAnnotation = nil;
+    [self.mapView setZoomLevel:16 animated:YES];
+    [self.mapView setCenterCoordinate:self.mapView.userLocation.coordinate animated:YES];
+    [self.mapView setRotationDegree:0 animated:YES duration:0.5];
+}
+
+//点击详细信息按钮
+-(void)showInfoView
+{
+    [self.sideMenuViewController presentRightMenuViewController];
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+    
+
 }
 
 
