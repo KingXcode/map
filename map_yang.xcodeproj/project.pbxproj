@@ -123,6 +123,7 @@
 		CBB3D76C1FB34C5B00813783 /* rightController */ = {
 			isa = PBXGroup;
 			children = (
+				CBF454641FB5F1D600D05B04 /* Model */,
 				FBFBA2091FB3DB6000B83ACC /* Cell */,
 				CBB3D76D1FB34C8000813783 /* HTRightMenuViewController.h */,
 				CBB3D76E1FB34C8000813783 /* HTRightMenuViewController.m */,
@@ -166,6 +167,20 @@
 			path = map_yang;
 			sourceTree = "<group>";
 		};
+		CBF454631FB5D53D00D05B04 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		CBF454641FB5F1D600D05B04 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		FB1B49A81FB54E7F001A1DA3 /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -178,7 +193,7 @@
 		FB1B49A91FB586EB001A1DA3 /* Weather */ = {
 			isa = PBXGroup;
 			children = (
-				FB1B49AB1FB58700001A1DA3 /* Controller */,
+				CBF454631FB5D53D00D05B04 /* Controller */,
 				FB1B49AA1FB586FA001A1DA3 /* View */,
 			);
 			path = Weather;
@@ -192,13 +207,6 @@
 				FB1B49AF1FB58B6F001A1DA3 /* HTLiveWeatherInfoView.xib */,
 			);
 			path = View;
-			sourceTree = "<group>";
-		};
-		FB1B49AB1FB58700001A1DA3 /* Controller */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Controller;
 			sourceTree = "<group>";
 		};
 		FBFBA2031FB2C48000B83ACC /* MainMap页面 */ = {

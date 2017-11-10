@@ -23,9 +23,27 @@
 #import "HTMapManager.h"
 #import <RESideMenu.h>
 
+
+@interface HTRightMenuModel:NSObject
+@property (nonatomic,copy) NSString * title;
+@property (nonatomic,copy) NSString * detailTitle;
+@property (nonatomic,assign) BOOL isOpen;
+@end
+
+@implementation HTRightMenuModel
+-(void)setIsOpen:(BOOL)isOpen
+{
+    _isOpen = isOpen;
+    [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithBool:_isOpen] forKey:[NSString stringWithFormat:@"HTRightMenuModel_%@",self.title]];
+}
+@end
+
 @interface HTRightMenuViewController ()<UITableViewDelegate,UITableViewDataSource,HTMapSelectTypeCellDelegate>
 @property (nonatomic,weak) UITableView * tableView;
 @property (nonatomic,copy) NSArray * titleArrays;
+
+@property (nonatomic,copy) NSArray * actionArray;
+
 @end
 
 @implementation HTRightMenuViewController
@@ -37,6 +55,45 @@
     }
     return _titleArrays;
 }
+
+-(NSArray *)actionArray
+{
+    if (_actionArray == nil) {
+        HTRightMenuModel *model_0 = [[HTRightMenuModel alloc]init];
+        model_0.title = @"屏幕常亮";
+        model_0.detailTitle = nil;
+        NSNumber *num0 = [[NSUserDefaults standardUserDefaults]objectForKey:[NSString stringWithFormat:@"HTRightMenuModel_%@",model_0.title]];
+        model_0.isOpen = num0.boolValue;
+        
+        HTRightMenuModel *model_1 = [[HTRightMenuModel alloc]init];
+        model_1.title = @"旋转手势";
+        model_1.detailTitle = @"图区双指旋转触发";
+        NSNumber *num1 = [[NSUserDefaults standardUserDefaults]objectForKey:[NSString stringWithFormat:@"HTRightMenuModel_%@",model_1.title]];
+        model_1.isOpen = num1.boolValue;
+        
+        HTRightMenuModel *model_2 = [[HTRightMenuModel alloc]init];
+        model_2.title = @"切换视角";
+        model_2.detailTitle = @"图区双指垂直上下滑动切换";
+        NSNumber *num2 = [[NSUserDefaults standardUserDefaults]objectForKey:[NSString stringWithFormat:@"HTRightMenuModel_%@",model_2.title]];
+        model_2.isOpen = num2.boolValue;
+        
+        HTRightMenuModel *model_3 = [[HTRightMenuModel alloc]init];
+        model_3.title = @"地图上显示常用地址";
+        model_3.detailTitle = nil;
+        NSNumber *num3 = [[NSUserDefaults standardUserDefaults]objectForKey:[NSString stringWithFormat:@"HTRightMenuModel_%@",model_3.title]];
+        model_3.isOpen = num3.boolValue;
+        
+        HTRightMenuModel *model_4 = [[HTRightMenuModel alloc]init];
+        model_4.title = @"显示推荐的常用地址";
+        model_4.detailTitle = nil;
+        NSNumber *num4 = [[NSUserDefaults standardUserDefaults]objectForKey:[NSString stringWithFormat:@"HTRightMenuModel_%@",model_4.title]];
+        model_4.isOpen = num4.boolValue;
+        
+        _actionArray = @[model_0,model_1,model_2,model_3,model_4];
+    }
+    return _actionArray;
+}
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];

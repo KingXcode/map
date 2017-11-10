@@ -18,7 +18,7 @@
             <subviews>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="chz-59-nM5">
                     <rect key="frame" x="0.0" y="0.0" width="160" height="75"/>
-                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.4021297089041096" colorSpace="custom" customColorSpace="sRGB"/>
+                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.79534053636889834" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="160" id="D09-tB-0ii"/>
                         <constraint firstAttribute="height" constant="75" id="fA6-PX-xpq"/>
@@ -67,16 +67,15 @@
                     <rect key="frame" x="134" y="1" width="25" height="73"/>
                     <subviews>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="weather_4" translatesAutoresizingMaskIntoConstraints="NO" id="ED3-oh-eZm">
-                            <rect key="frame" x="5" y="27" width="20" height="20"/>
+                            <rect key="frame" x="5" y="21.5" width="20" height="20"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="20" id="EGA-d6-ZF2"/>
                                 <constraint firstAttribute="height" constant="20" id="Ffd-A3-KBo"/>
                             </constraints>
                         </imageView>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="--" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LIN-vo-irs">
-                            <rect key="frame" x="5" y="47" width="20" height="16"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="--" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LIN-vo-irs">
+                            <rect key="frame" x="5" y="41.5" width="20" height="11"/>
                             <constraints>
-                                <constraint firstAttribute="height" constant="16" id="RzP-jM-cpv"/>
                                 <constraint firstAttribute="width" constant="20" id="yKF-bS-vuQ"/>
                             </constraints>
                             <fontDescription key="fontDescription" type="system" pointSize="9"/>
@@ -90,7 +89,7 @@
                         <constraint firstAttribute="trailing" secondItem="ED3-oh-eZm" secondAttribute="trailing" id="esp-1i-PMM"/>
                         <constraint firstAttribute="trailing" secondItem="LIN-vo-irs" secondAttribute="trailing" id="jML-Xz-dB1"/>
                         <constraint firstItem="LIN-vo-irs" firstAttribute="top" secondItem="ED3-oh-eZm" secondAttribute="bottom" id="mbi-C3-9RZ"/>
-                        <constraint firstItem="ED3-oh-eZm" firstAttribute="centerY" secondItem="z7u-VK-Ot8" secondAttribute="centerY" id="nqJ-ux-KTA"/>
+                        <constraint firstItem="ED3-oh-eZm" firstAttribute="centerY" secondItem="z7u-VK-Ot8" secondAttribute="centerY" constant="-5" id="nqJ-ux-KTA"/>
                     </constraints>
                 </view>
             </subviews>

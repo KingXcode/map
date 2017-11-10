@@ -96,6 +96,7 @@
     UISwipeGestureRecognizer *swipeLeft = [[UISwipeGestureRecognizer alloc]initWithTarget:self action:@selector(swipeWeatherView:)];
     swipeLeft.direction = UISwipeGestureRecognizerDirectionLeft;
     [self addGestureRecognizer:swipeLeft];
+ 
     
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapWeatherView:)];
     [self addGestureRecognizer:tap];
@@ -108,6 +109,8 @@
         make.top.equalTo(self.superview).mas_offset([[UIApplication sharedApplication] statusBarFrame].size.height+8);
     }];
 }
+
+
 
 
 //点击天气标签
