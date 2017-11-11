@@ -1,0 +1,27 @@
+//
+//  map_yang-Prefix.pch.pch
+//  map_yang
+//
+//  Created by niesiyang-worker on 2017/11/11.
+//  Copyright © 2017年 niesiyang. All rights reserved.
+//
+
+#ifndef map_yang_Prefix_pch_pch
+#define map_yang_Prefix_pch_pch
+
+// Include any system framework and library headers here that should be included in all compilation units.
+// You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
+
+#import "AppDelegate.h"
+#import "HTColor.h"
+#import "HTProgressHUD.h"
+#import "HTSettingManager.h"
+#import "HTMapManager.h"
+#import "UIControl+HTClicked.h"
+
+#define HTFont_Custom(font) [UIFont fontWithName:@"HYy1gj" size:font]
+#define HTFont(font)        [UIFont systemFontOfSize:font]
+#define HTBoldFont(font)    [UIFont boldSystemFontOfSize:font]
+
+
+#endif /* map_yang_Prefix_pch_pch */

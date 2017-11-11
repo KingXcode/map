@@ -70,7 +70,10 @@
     
     //添加天气view
     [self addWeatherView];
+    
 }
+
+
 
 -(void)addWeatherView
 {
@@ -144,6 +147,8 @@
     mapView.zoomLevel = 16;
     mapView.delegate = self;
     mapView.touchPOIEnabled = YES;
+    mapView.rotateEnabled = [HTSettingManager sharedManager].set_rotateEnabled;
+    mapView.rotateCameraEnabled = [HTSettingManager sharedManager].set_rotateCameraEnabled;
     [self.view addSubview:mapView];
     self.mapView = mapView;
     
@@ -269,13 +274,11 @@
         [self.mapView selectAnnotation:annotation animated:YES];
         self.poiAnnotation = annotation;
         [self.mapView setCenterCoordinate:annotation.coordinate animated:YES];
-
         
         MATouchPoi *poi = pois.firstObject;
         AMapPOIIDSearchRequest *request = [[AMapPOIIDSearchRequest alloc]init];
         request.uid = poi.uid;
         [self.search AMapPOIIDSearch:request];
-        
     }
 }
 
@@ -404,10 +407,6 @@
 
 
 #pragma -mark- 点击事件
-
-
-
-
 //显示自己的位置
 -(void)showSelfLocation
 {
@@ -423,6 +422,8 @@
 {
     [self.sideMenuViewController presentRightMenuViewController];
 }
+
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

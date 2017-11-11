@@ -49,15 +49,15 @@
     NSString *time = [_liveWeather.reportTime componentsSeparatedByString:@" "].firstObject;
     self.reportTimeLabel.text = [NSString stringWithFormat:@"发布时间:%@",time];
     
-    
-    self.weatherLabel.text = [_liveWeather.weather substringToIndex:1];
-    
+    if (_liveWeather.weather.length>0) {
+        self.weatherLabel.text = _liveWeather.weather;
+    }
     
     if ([_liveWeather.weather containsString:@"晴"])
     {
         self.weatherIcon.image = [UIImage imageNamed:@"weather_0"];
     }
-    else if ([_liveWeather.weather containsString:@"阴"])
+    else if ([_liveWeather.weather containsString:@"阴"]||[_liveWeather.weather containsString:@"云"])
     {
         self.weatherIcon.image = [UIImage imageNamed:@"weather_1"];
     }
@@ -92,6 +92,8 @@
     
     self.rightView.layer.cornerRadius = 5;
     self.rightView.clipsToBounds = YES;
+    
+    self.temperatureLabel.font = HTFont_Custom(12);
     
     UISwipeGestureRecognizer *swipeLeft = [[UISwipeGestureRecognizer alloc]initWithTarget:self action:@selector(swipeWeatherView:)];
     swipeLeft.direction = UISwipeGestureRecognizerDirectionLeft;

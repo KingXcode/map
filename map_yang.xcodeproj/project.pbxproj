@@ -21,6 +21,9 @@
 		FB1B49A71FB54E7A001A1DA3 /* HTPointAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = FB1B49A61FB54E7A001A1DA3 /* HTPointAnnotation.m */; };
 		FB1B49AE1FB58723001A1DA3 /* HTLiveWeatherInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = FB1B49AD1FB58723001A1DA3 /* HTLiveWeatherInfoView.m */; };
 		FB1B49B01FB58B6F001A1DA3 /* HTLiveWeatherInfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = FB1B49AF1FB58B6F001A1DA3 /* HTLiveWeatherInfoView.xib */; };
+		FB1B49B51FB688D6001A1DA3 /* HTSettingManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FB1B49B41FB688D6001A1DA3 /* HTSettingManager.m */; };
+		FB1B49B81FB696AF001A1DA3 /* hyy1gjm.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FB1B49B71FB696AF001A1DA3 /* hyy1gjm.ttf */; };
+		FB1B49BC1FB69FC2001A1DA3 /* UIControl+HTClicked.m in Sources */ = {isa = PBXBuildFile; fileRef = FB1B49BB1FB69FC2001A1DA3 /* UIControl+HTClicked.m */; };
 		FBFBA2081FB2C53300B83ACC /* HTMainMapInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = FBFBA2071FB2C53300B83ACC /* HTMainMapInfoView.m */; };
 		FBFBA2101FB43FB100B83ACC /* HTMapSelectTypeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FBFBA20F1FB43FB100B83ACC /* HTMapSelectTypeCell.m */; };
 		FBFBA2141FB4518900B83ACC /* HTMapTypeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FBFBA2121FB4518900B83ACC /* HTMapTypeCell.m */; };
@@ -54,6 +57,12 @@
 		FB1B49AC1FB58723001A1DA3 /* HTLiveWeatherInfoView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HTLiveWeatherInfoView.h; sourceTree = "<group>"; };
 		FB1B49AD1FB58723001A1DA3 /* HTLiveWeatherInfoView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HTLiveWeatherInfoView.m; sourceTree = "<group>"; };
 		FB1B49AF1FB58B6F001A1DA3 /* HTLiveWeatherInfoView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HTLiveWeatherInfoView.xib; sourceTree = "<group>"; };
+		FB1B49B21FB68596001A1DA3 /* map_yang-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "map_yang-Prefix.pch"; sourceTree = "<group>"; };
+		FB1B49B31FB688D6001A1DA3 /* HTSettingManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HTSettingManager.h; sourceTree = "<group>"; };
+		FB1B49B41FB688D6001A1DA3 /* HTSettingManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HTSettingManager.m; sourceTree = "<group>"; };
+		FB1B49B71FB696AF001A1DA3 /* hyy1gjm.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = hyy1gjm.ttf; sourceTree = "<group>"; };
+		FB1B49BA1FB69FC2001A1DA3 /* UIControl+HTClicked.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIControl+HTClicked.h"; sourceTree = "<group>"; };
+		FB1B49BB1FB69FC2001A1DA3 /* UIControl+HTClicked.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIControl+HTClicked.m"; sourceTree = "<group>"; };
 		FBFBA2061FB2C53300B83ACC /* HTMainMapInfoView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HTMainMapInfoView.h; sourceTree = "<group>"; };
 		FBFBA2071FB2C53300B83ACC /* HTMainMapInfoView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HTMainMapInfoView.m; sourceTree = "<group>"; };
 		FBFBA20E1FB43FB100B83ACC /* HTMapSelectTypeCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HTMapSelectTypeCell.h; sourceTree = "<group>"; };
@@ -104,6 +113,8 @@
 		CB1BDB761FB21A0D00228A15 /* Custom */ = {
 			isa = PBXGroup;
 			children = (
+				FB1B49B91FB69FC2001A1DA3 /* Category */,
+				FB1B49B61FB688E2001A1DA3 /* HTSettingManager */,
 				CB1BDB771FB21A3C00228A15 /* HTColor */,
 				CB1BDB721FB2176300228A15 /* HTProgressHUD */,
 				CB1BDB6E1FB1FF8000228A15 /* MapManager */,
@@ -123,7 +134,7 @@
 		CBB3D76C1FB34C5B00813783 /* rightController */ = {
 			isa = PBXGroup;
 			children = (
-				CBF454641FB5F1D600D05B04 /* Model */,
+				FB1B49B11FB683E5001A1DA3 /* Model */,
 				FBFBA2091FB3DB6000B83ACC /* Cell */,
 				CBB3D76D1FB34C8000813783 /* HTRightMenuViewController.h */,
 				CBB3D76E1FB34C8000813783 /* HTRightMenuViewController.m */,
@@ -161,8 +172,10 @@
 				CBE6F8B01FB0D01500DD346B /* Main.storyboard */,
 				CBE6F8B31FB0D01500DD346B /* Assets.xcassets */,
 				CBE6F8B51FB0D01500DD346B /* LaunchScreen.storyboard */,
+				FB1B49B71FB696AF001A1DA3 /* hyy1gjm.ttf */,
 				CBE6F8B81FB0D01500DD346B /* Info.plist */,
 				CBE6F8B91FB0D01500DD346B /* main.m */,
+				FB1B49B21FB68596001A1DA3 /* map_yang-Prefix.pch */,
 			);
 			path = map_yang;
 			sourceTree = "<group>";
@@ -172,13 +185,6 @@
 			children = (
 			);
 			path = Controller;
-			sourceTree = "<group>";
-		};
-		CBF454641FB5F1D600D05B04 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Model;
 			sourceTree = "<group>";
 		};
 		FB1B49A81FB54E7F001A1DA3 /* Model */ = {
@@ -207,6 +213,31 @@
 				FB1B49AF1FB58B6F001A1DA3 /* HTLiveWeatherInfoView.xib */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		FB1B49B11FB683E5001A1DA3 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		FB1B49B61FB688E2001A1DA3 /* HTSettingManager */ = {
+			isa = PBXGroup;
+			children = (
+				FB1B49B31FB688D6001A1DA3 /* HTSettingManager.h */,
+				FB1B49B41FB688D6001A1DA3 /* HTSettingManager.m */,
+			);
+			path = HTSettingManager;
+			sourceTree = "<group>";
+		};
+		FB1B49B91FB69FC2001A1DA3 /* Category */ = {
+			isa = PBXGroup;
+			children = (
+				FB1B49BA1FB69FC2001A1DA3 /* UIControl+HTClicked.h */,
+				FB1B49BB1FB69FC2001A1DA3 /* UIControl+HTClicked.m */,
+			);
+			path = Category;
 			sourceTree = "<group>";
 		};
 		FBFBA2031FB2C48000B83ACC /* MainMap页面 */ = {
@@ -324,6 +355,7 @@
 				CBE6F8B41FB0D01500DD346B /* Assets.xcassets in Resources */,
 				FBFBA2151FB4518900B83ACC /* HTMapTypeCell.xib in Resources */,
 				CBE6F8B21FB0D01500DD346B /* Main.storyboard in Resources */,
+				FB1B49B81FB696AF001A1DA3 /* hyy1gjm.ttf in Resources */,
 				FB1B49B01FB58B6F001A1DA3 /* HTLiveWeatherInfoView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -393,10 +425,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				FB1B49A71FB54E7A001A1DA3 /* HTPointAnnotation.m in Sources */,
+				FB1B49BC1FB69FC2001A1DA3 /* UIControl+HTClicked.m in Sources */,
 				FB1B49AE1FB58723001A1DA3 /* HTLiveWeatherInfoView.m in Sources */,
 				CBE6F8AF1FB0D01500DD346B /* ViewController.m in Sources */,
 				FBFBA2101FB43FB100B83ACC /* HTMapSelectTypeCell.m in Sources */,
 				CBE6F8BA1FB0D01500DD346B /* main.m in Sources */,
+				FB1B49B51FB688D6001A1DA3 /* HTSettingManager.m in Sources */,
 				CB1BDB711FB1FF9A00228A15 /* HTMapManager.m in Sources */,
 				CB1BDB7A1FB21A4E00228A15 /* HTColor.m in Sources */,
 				CBB3D76F1FB34C8000813783 /* HTRightMenuViewController.m in Sources */,
@@ -540,6 +574,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 9EF42SN8GN;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "map_yang/map_yang-Prefix.pch";
 				INFOPLIST_FILE = map_yang/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "cn.niesiyang.map-yang";
@@ -555,6 +591,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 9EF42SN8GN;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "map_yang/map_yang-Prefix.pch";
 				INFOPLIST_FILE = map_yang/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "cn.niesiyang.map-yang";

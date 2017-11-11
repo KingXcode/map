@@ -15,6 +15,7 @@
     // Initialization code
     self.imageView.layer.cornerRadius = 3;
     self.imageView.clipsToBounds = YES;
+    self.titleLabel.font = HTFont_Custom(10);
 }
 
 @end

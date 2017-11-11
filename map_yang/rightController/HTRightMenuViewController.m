@@ -34,9 +34,10 @@
 -(void)setIsOpen:(BOOL)isOpen
 {
     _isOpen = isOpen;
-    [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithBool:_isOpen] forKey:[NSString stringWithFormat:@"HTRightMenuModel_%@",self.title]];
 }
 @end
+
+
 
 @interface HTRightMenuViewController ()<UITableViewDelegate,UITableViewDataSource,HTMapSelectTypeCellDelegate>
 @property (nonatomic,weak) UITableView * tableView;
@@ -51,43 +52,38 @@
 -(NSArray *)titleArrays
 {
     if (_titleArrays == nil) {
-        _titleArrays = @[@"主题",@"事件",@"其它"];
+        _titleArrays = @[@"主题",@"事件"/*,@"其它"*/];
     }
     return _titleArrays;
 }
 
+
+
+
 -(NSArray *)actionArray
 {
     if (_actionArray == nil) {
+        
         HTRightMenuModel *model_0 = [[HTRightMenuModel alloc]init];
         model_0.title = @"屏幕常亮";
         model_0.detailTitle = nil;
-        NSNumber *num0 = [[NSUserDefaults standardUserDefaults]objectForKey:[NSString stringWithFormat:@"HTRightMenuModel_%@",model_0.title]];
-        model_0.isOpen = num0.boolValue;
         
         HTRightMenuModel *model_1 = [[HTRightMenuModel alloc]init];
         model_1.title = @"旋转手势";
         model_1.detailTitle = @"图区双指旋转触发";
-        NSNumber *num1 = [[NSUserDefaults standardUserDefaults]objectForKey:[NSString stringWithFormat:@"HTRightMenuModel_%@",model_1.title]];
-        model_1.isOpen = num1.boolValue;
         
         HTRightMenuModel *model_2 = [[HTRightMenuModel alloc]init];
         model_2.title = @"切换视角";
         model_2.detailTitle = @"图区双指垂直上下滑动切换";
-        NSNumber *num2 = [[NSUserDefaults standardUserDefaults]objectForKey:[NSString stringWithFormat:@"HTRightMenuModel_%@",model_2.title]];
-        model_2.isOpen = num2.boolValue;
         
         HTRightMenuModel *model_3 = [[HTRightMenuModel alloc]init];
         model_3.title = @"地图上显示常用地址";
         model_3.detailTitle = nil;
-        NSNumber *num3 = [[NSUserDefaults standardUserDefaults]objectForKey:[NSString stringWithFormat:@"HTRightMenuModel_%@",model_3.title]];
-        model_3.isOpen = num3.boolValue;
+
         
         HTRightMenuModel *model_4 = [[HTRightMenuModel alloc]init];
         model_4.title = @"显示推荐的常用地址";
         model_4.detailTitle = nil;
-        NSNumber *num4 = [[NSUserDefaults standardUserDefaults]objectForKey:[NSString stringWithFormat:@"HTRightMenuModel_%@",model_4.title]];
-        model_4.isOpen = num4.boolValue;
         
         _actionArray = @[model_0,model_1,model_2,model_3,model_4];
     }
@@ -125,6 +121,7 @@
     tableView.estimatedRowHeight = 0;
     tableView.estimatedSectionHeaderHeight = 0;
     tableView.estimatedSectionFooterHeight = 0;
+    tableView.tableFooterView = [UIView new];
     self.tableView = tableView;
     [self.view addSubview:tableView];
     [tableView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -161,7 +158,7 @@
     }
     else if (section == 1)
     {
-        return 1;
+        return self.actionArray.count;
     }
     else
     {
@@ -180,6 +177,10 @@
         typeCell.delegate = self;
         return typeCell;
     }
+    else if (indexPath.section == 1)
+    {
+        return [self configSettingCellWithTableView:tableView AtIndexPath:indexPath];
+    }
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
     if (cell == nil) {
@@ -189,6 +190,58 @@
     return cell;
 }
 
+//设置cell
+-(UITableViewCell *)configSettingCellWithTableView:(UITableView *)tableView AtIndexPath:(NSIndexPath *)indexPath
+{
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell_1"];
+    if (cell == nil) {
+        cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"cell_1"];
+        cell.textLabel.textColor = [HTColor textColor_333333];
+        cell.detailTextLabel.textColor = [HTColor textColor_666666];
+        cell.textLabel.font = HTFont_Custom(14);
+        cell.detailTextLabel.font = HTBoldFont(10);
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    }
+    
+    UISwitch *Switch = [[UISwitch alloc]init];
+    Switch.enabled = YES;
+    cell.accessoryView = Switch;
+    if (indexPath.row == 0) {
+        Switch.on = [HTSettingManager sharedManager].set_screenCandela;
+    }else if (indexPath.row == 1){
+        Switch.on = [HTSettingManager sharedManager].set_rotateEnabled;
+    }else if (indexPath.row == 2){
+        Switch.on = [HTSettingManager sharedManager].set_rotateCameraEnabled;
+    }else if (indexPath.row == 3){
+        Switch.on = [HTSettingManager sharedManager].set_usualAddress;
+    }else if (indexPath.row == 4){
+        Switch.on = [HTSettingManager sharedManager].set_recommendAddress;
+    }else
+    {
+        Switch.on = NO;
+        Switch.enabled = NO;
+    }
+    [Switch ht_touchUpInside:^{
+        if (indexPath.row == 0) {
+            [HTSettingManager sharedManager].set_screenCandela = Switch.on;
+        }else if (indexPath.row == 1){
+            [HTSettingManager sharedManager].set_rotateEnabled = Switch.on;
+        }else if (indexPath.row == 2){
+            [HTSettingManager sharedManager].set_rotateCameraEnabled = Switch.on;
+        }else if (indexPath.row == 3){
+            [HTSettingManager sharedManager].set_usualAddress = Switch.on;
+        }else if (indexPath.row == 4){
+            [HTSettingManager sharedManager].set_recommendAddress = Switch.on;
+        }
+    }];
+    
+    HTRightMenuModel *model = self.actionArray[indexPath.row];
+    cell.textLabel.text = model.title;
+    cell.detailTextLabel.text = model.detailTitle;
+    return cell;
+}
+
+
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.section == 0)
@@ -197,7 +250,7 @@
     }
     else if (indexPath.section == 1)
     {
-        return 150;
+        return 44;
     }
     else
     {
@@ -210,7 +263,7 @@
     UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
     [button setTitleColor:[HTColor textColor_333333] forState:UIControlStateNormal];
     [button setBackgroundColor:[HTColor ht_emptyColor]];
-    button.titleLabel.font = [UIFont systemFontOfSize:12];
+    button.titleLabel.font = HTFont_Custom(12);
     [button setTitle:self.titleArrays[section] forState:UIControlStateNormal];
     button.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
     [button setContentEdgeInsets:UIEdgeInsetsMake(0, 15, 0, 0)];
@@ -225,6 +278,15 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    if (indexPath.section == 1) {
+        [self didSelectSettingRowAtIndexPath:indexPath.row];
+    }
+}
+
+//点击设置cell
+-(void)didSelectSettingRowAtIndexPath:(NSInteger)row
+{
+    
 }
 
 
