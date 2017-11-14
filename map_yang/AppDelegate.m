@@ -22,6 +22,7 @@
     // Override point for customization after application launch.
     [AMapServices sharedServices].apiKey = @"d1c534625aa81584a24cbd3dc951688b";
     
+    [[HTDataBaseManager sharedManager] creatDataBaseWithName:@"map"];
     
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     ViewController *vc = [[ViewController alloc]init];

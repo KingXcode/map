@@ -18,10 +18,17 @@
 #import "HTSettingManager.h"
 #import "HTMapManager.h"
 #import "UIControl+HTClicked.h"
+#import <Masonry.h>
+#import "HTDataBaseManager.h"
+#import <MJRefresh.h>
+
 
 #define HTFont_Custom(font) [UIFont fontWithName:@"HYy1gj" size:font]
 #define HTFont(font)        [UIFont systemFontOfSize:font]
 #define HTBoldFont(font)    [UIFont boldSystemFontOfSize:font]
+
+#define IphoneWidth [UIScreen mainScreen].bounds.size.width
+#define IphoneHeight [UIScreen mainScreen].bounds.size.height
 
 
 #endif /* map_yang_Prefix_pch_pch */

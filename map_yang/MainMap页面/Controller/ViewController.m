@@ -19,6 +19,9 @@
 #import "HTMapManager.h"
 #import "HTPointAnnotation.h"
 #import "HTLiveWeatherInfoView.h"
+#import "HTMainPoiViewController.h"
+#import "HTMainPoiNavCtl.h"
+#import "UIControl+HTClicked.h"
 
 
 @interface ViewController ()<MAMapViewDelegate,AMapSearchDelegate>
@@ -29,7 +32,6 @@
 
 @property (nonatomic,strong) HTMainMapInfoView * infoView;
 @property (nonatomic,strong) HTMainMapInfoView * scaleView;
-
 @property (nonatomic,weak) HTLiveWeatherInfoView * weatherView;
 
 
@@ -42,10 +44,16 @@
 //点击地图poi信息 获取到的点
 @property (nonatomic, strong) MAPointAnnotation *poiAnnotation;
 
+//poi信息控制器的导航控制器 poiNavCtl的rootviewcontroller是poiCtl
+@property (nonatomic,strong) HTMainPoiNavCtl * poiNavCtl;
+//poi信息控制器
+@property (nonatomic,strong) HTMainPoiViewController * poiCtl;
+
 
 @end
 
 @implementation ViewController
+
 
 -(AMapSearchAPI *)search
 {
@@ -61,7 +69,9 @@
     [super viewDidLoad];
     
     self.view.backgroundColor = [HTColor ht_whiteColor];
+    
 
+    
     //初始化地图
     [self addMapView];
 
@@ -71,8 +81,20 @@
     //添加天气view
     [self addWeatherView];
     
+    
+    //配置poi信息 控制器
+    [self configPoiCtl];
 }
 
+-(void)configPoiCtl
+{
+    self.poiCtl = [[HTMainPoiViewController alloc]init];
+    self.poiNavCtl = [[HTMainPoiNavCtl alloc]initWithRootViewController:self.poiCtl];
+    [self addChildViewController:self.poiNavCtl];
+    [self.view addSubview:self.poiNavCtl.view];
+    [self.poiNavCtl didMoveToParentViewController:self];
+
+}
 
 
 -(void)addWeatherView
@@ -159,7 +181,6 @@
     [self.mapView updateUserLocationRepresentation:represent];
     
     
-    
     [mapView mas_makeConstraints:^(MASConstraintMaker *make) {
         if (@available(iOS 11.0, *)) {
             make.top.equalTo(self.view).mas_offset(self.view.safeAreaInsets.top+[[UIApplication sharedApplication] statusBarFrame].size.height);
@@ -223,6 +244,7 @@
             [self searchLocationReGeoCode];
         }
     }
+    [HTMapManager sharedManager].userLocation = userLocation;
 }
 
 /**
@@ -234,6 +256,8 @@
 {
     [self.weatherView hiddenWeatherView];
 }
+
+
 
 /**
  * @brief 地图将要发生缩放时调用此接口
@@ -320,7 +344,7 @@
         annotationView = [[MAPinAnnotationView alloc] initWithAnnotation:annotation
                                                          reuseIdentifier:touchPoiReuseIndetifier];
     }
-    annotationView.canShowCallout = YES;
+    annotationView.canShowCallout = NO;
     annotationView.animatesDrop   = NO;
     annotationView.draggable      = NO;
     annotationView.image = [UIImage imageNamed:@"b_poi_hl"];
@@ -362,10 +386,18 @@
  */
 -(void)onReGeocodeSearchDone:(AMapReGeocodeSearchRequest *)request response:(AMapReGeocodeSearchResponse *)response
 {
-    AMapWeatherSearchRequest *weatherrequest = [[AMapWeatherSearchRequest alloc] init];
-    weatherrequest.city                      = response.regeocode.addressComponent.city;
-    weatherrequest.type                      = AMapWeatherTypeLive;
-    [self.search AMapWeatherSearch:weatherrequest];
+    if (self.liveWeather == nil)
+    {
+        AMapWeatherSearchRequest *weatherrequest = [[AMapWeatherSearchRequest alloc] init];
+        weatherrequest.city                      = response.regeocode.addressComponent.city;
+        weatherrequest.type                      = AMapWeatherTypeLive;
+        [self.search AMapWeatherSearch:weatherrequest];
+        [HTMapManager sharedManager].currentCity = response.regeocode.addressComponent.city;
+    }
+    else
+    {
+        [HTMapManager sharedManager].searchCity = response.regeocode.addressComponent.city;
+    }
 }
 
 /**
@@ -415,12 +447,16 @@
     [self.mapView setZoomLevel:16 animated:YES];
     [self.mapView setCenterCoordinate:self.mapView.userLocation.coordinate animated:YES];
     [self.mapView setRotationDegree:0 animated:YES duration:0.5];
+    
+    
+
 }
 
 //点击详细信息按钮
 -(void)showInfoView
 {
     [self.sideMenuViewController presentRightMenuViewController];
+
 }
 
 

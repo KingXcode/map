@@ -18,6 +18,10 @@
 		CBE6F8B41FB0D01500DD346B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CBE6F8B31FB0D01500DD346B /* Assets.xcassets */; };
 		CBE6F8B71FB0D01500DD346B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CBE6F8B51FB0D01500DD346B /* LaunchScreen.storyboard */; };
 		CBE6F8BA1FB0D01500DD346B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CBE6F8B91FB0D01500DD346B /* main.m */; };
+		CBF4546C1FB7CCF700D05B04 /* HTMainPoiViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CBF4546B1FB7CCF700D05B04 /* HTMainPoiViewController.m */; };
+		CBF454701FB7D3FB00D05B04 /* HTMainPoiNavCtl.m in Sources */ = {isa = PBXBuildFile; fileRef = CBF4546F1FB7D3FB00D05B04 /* HTMainPoiNavCtl.m */; };
+		CBF454761FB87EDB00D05B04 /* HTDataBaseManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CBF454751FB87EDB00D05B04 /* HTDataBaseManager.m */; };
+		CBF4547A1FB8809100D05B04 /* HTPoiSearchItemModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CBF454791FB8809100D05B04 /* HTPoiSearchItemModel.m */; };
 		FB1B49A71FB54E7A001A1DA3 /* HTPointAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = FB1B49A61FB54E7A001A1DA3 /* HTPointAnnotation.m */; };
 		FB1B49AE1FB58723001A1DA3 /* HTLiveWeatherInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = FB1B49AD1FB58723001A1DA3 /* HTLiveWeatherInfoView.m */; };
 		FB1B49B01FB58B6F001A1DA3 /* HTLiveWeatherInfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = FB1B49AF1FB58B6F001A1DA3 /* HTLiveWeatherInfoView.xib */; };
@@ -52,6 +56,16 @@
 		CBE6F8B61FB0D01500DD346B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CBE6F8B81FB0D01500DD346B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CBE6F8B91FB0D01500DD346B /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		CBF4546A1FB7CCF700D05B04 /* HTMainPoiViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HTMainPoiViewController.h; sourceTree = "<group>"; };
+		CBF4546B1FB7CCF700D05B04 /* HTMainPoiViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HTMainPoiViewController.m; sourceTree = "<group>"; };
+		CBF4546E1FB7D3FB00D05B04 /* HTMainPoiNavCtl.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HTMainPoiNavCtl.h; sourceTree = "<group>"; };
+		CBF4546F1FB7D3FB00D05B04 /* HTMainPoiNavCtl.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HTMainPoiNavCtl.m; sourceTree = "<group>"; };
+		CBF454711FB81FE900D05B04 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
+		CBF454721FB81FE900D05B04 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
+		CBF454741FB87EDB00D05B04 /* HTDataBaseManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HTDataBaseManager.h; sourceTree = "<group>"; };
+		CBF454751FB87EDB00D05B04 /* HTDataBaseManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HTDataBaseManager.m; sourceTree = "<group>"; };
+		CBF454781FB8809100D05B04 /* HTPoiSearchItemModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HTPoiSearchItemModel.h; sourceTree = "<group>"; };
+		CBF454791FB8809100D05B04 /* HTPoiSearchItemModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HTPoiSearchItemModel.m; sourceTree = "<group>"; };
 		FB1B49A51FB54E7A001A1DA3 /* HTPointAnnotation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HTPointAnnotation.h; sourceTree = "<group>"; };
 		FB1B49A61FB54E7A001A1DA3 /* HTPointAnnotation.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HTPointAnnotation.m; sourceTree = "<group>"; };
 		FB1B49AC1FB58723001A1DA3 /* HTLiveWeatherInfoView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HTLiveWeatherInfoView.h; sourceTree = "<group>"; };
@@ -113,6 +127,7 @@
 		CB1BDB761FB21A0D00228A15 /* Custom */ = {
 			isa = PBXGroup;
 			children = (
+				CBF454731FB87EBF00D05B04 /* DataBase */,
 				FB1B49B91FB69FC2001A1DA3 /* Category */,
 				FB1B49B61FB688E2001A1DA3 /* HTSettingManager */,
 				CB1BDB771FB21A3C00228A15 /* HTColor */,
@@ -169,9 +184,10 @@
 				FB1B49A91FB586EB001A1DA3 /* Weather */,
 				CBB3D76C1FB34C5B00813783 /* rightController */,
 				FBFBA2031FB2C48000B83ACC /* MainMap页面 */,
+				CBF454681FB7CCBE00D05B04 /* MainPOIViewController */,
+				CBE6F8B51FB0D01500DD346B /* LaunchScreen.storyboard */,
 				CBE6F8B01FB0D01500DD346B /* Main.storyboard */,
 				CBE6F8B31FB0D01500DD346B /* Assets.xcassets */,
-				CBE6F8B51FB0D01500DD346B /* LaunchScreen.storyboard */,
 				FB1B49B71FB696AF001A1DA3 /* hyy1gjm.ttf */,
 				CBE6F8B81FB0D01500DD346B /* Info.plist */,
 				CBE6F8B91FB0D01500DD346B /* main.m */,
@@ -185,6 +201,52 @@
 			children = (
 			);
 			path = Controller;
+			sourceTree = "<group>";
+		};
+		CBF454681FB7CCBE00D05B04 /* MainPOIViewController */ = {
+			isa = PBXGroup;
+			children = (
+				CBF454771FB8802B00D05B04 /* Model */,
+				CBF454691FB7CCD400D05B04 /* Controller */,
+			);
+			path = MainPOIViewController;
+			sourceTree = "<group>";
+		};
+		CBF454691FB7CCD400D05B04 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				CBF4546D1FB7D3D100D05B04 /* nav */,
+				CBF4546A1FB7CCF700D05B04 /* HTMainPoiViewController.h */,
+				CBF4546B1FB7CCF700D05B04 /* HTMainPoiViewController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		CBF4546D1FB7D3D100D05B04 /* nav */ = {
+			isa = PBXGroup;
+			children = (
+				CBF4546E1FB7D3FB00D05B04 /* HTMainPoiNavCtl.h */,
+				CBF4546F1FB7D3FB00D05B04 /* HTMainPoiNavCtl.m */,
+			);
+			path = nav;
+			sourceTree = "<group>";
+		};
+		CBF454731FB87EBF00D05B04 /* DataBase */ = {
+			isa = PBXGroup;
+			children = (
+				CBF454741FB87EDB00D05B04 /* HTDataBaseManager.h */,
+				CBF454751FB87EDB00D05B04 /* HTDataBaseManager.m */,
+			);
+			path = DataBase;
+			sourceTree = "<group>";
+		};
+		CBF454771FB8802B00D05B04 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				CBF454781FB8809100D05B04 /* HTPoiSearchItemModel.h */,
+				CBF454791FB8809100D05B04 /* HTPoiSearchItemModel.m */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		FB1B49A81FB54E7F001A1DA3 /* Model */ = {
@@ -333,7 +395,6 @@
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
-				en,
 				Base,
 			);
 			mainGroup = CBE6F89E1FB0D01500DD346B;
@@ -435,9 +496,13 @@
 				CB1BDB7A1FB21A4E00228A15 /* HTColor.m in Sources */,
 				CBB3D76F1FB34C8000813783 /* HTRightMenuViewController.m in Sources */,
 				FBFBA2081FB2C53300B83ACC /* HTMainMapInfoView.m in Sources */,
+				CBF454761FB87EDB00D05B04 /* HTDataBaseManager.m in Sources */,
 				CBE6F8AC1FB0D01500DD346B /* AppDelegate.m in Sources */,
 				FBFBA2141FB4518900B83ACC /* HTMapTypeCell.m in Sources */,
+				CBF454701FB7D3FB00D05B04 /* HTMainPoiNavCtl.m in Sources */,
+				CBF4547A1FB8809100D05B04 /* HTPoiSearchItemModel.m in Sources */,
 				CB1BDB751FB2178300228A15 /* HTProgressHUD.m in Sources */,
+				CBF4546C1FB7CCF700D05B04 /* HTMainPoiViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -448,6 +513,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				CBE6F8B11FB0D01500DD346B /* Base */,
+				CBF454721FB81FE900D05B04 /* zh-Hans */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -456,6 +522,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				CBE6F8B61FB0D01500DD346B /* Base */,
+				CBF454711FB81FE900D05B04 /* zh-Hans */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
@@ -467,6 +534,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -522,6 +590,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";

@@ -18,4 +18,13 @@
 
 @property (nonatomic,strong)MAMapView *mapView;
 
+//当前城市
+@property (nonatomic,copy) NSString * currentCity;
+
+//搜索城市  默认是当前城市
+@property (nonatomic,copy) NSString * searchCity;
+
+@property (nonatomic,strong) MAUserLocation *userLocation;
+
+
 @end
