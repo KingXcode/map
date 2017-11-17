@@ -10,4 +10,6 @@
 
 @interface HTPOIDetailInfoViewController : UIViewController
 
+@property (nonatomic,strong) AMapPOI * poi;
+
 @end

@@ -7,7 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
-@interface HTTransitionOne : NSObject
-
+@interface HTTransitionOne : NSObject<UIViewControllerAnimatedTransitioning>
+- (instancetype)initWithOperation:(BOOL)isPush;
 @end

@@ -9,15 +9,15 @@
 #import "HTPoiSearchItemModel.h"
 
 @implementation HTPoiSearchItemModel
-
-+ (NSString *)primaryKey {
-    return @"ID";
-}
-
-//设置索引,可以加快检索的速度
-+ (NSArray *)indexedProperties {
-    return @[@"ID"];
-}
+//
+//+ (NSString *)primaryKey {
+//    return @"ID";
+//}
+//
+////设置索引,可以加快检索的速度
+//+ (NSArray *)indexedProperties {
+//    return @[@"ID"];
+//}
 
 + (NSArray *)requiredProperties {
     return @[@"name"];

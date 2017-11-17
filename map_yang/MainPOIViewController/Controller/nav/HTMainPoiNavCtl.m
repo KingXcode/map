@@ -8,6 +8,7 @@
 
 #import "HTMainPoiNavCtl.h"
 #import <RESideMenu.h>
+#import "HTTransitionOne.h"
 
 @interface HTMainPoiNavCtl ()<UINavigationControllerDelegate>
 
@@ -23,6 +24,21 @@
 
 @implementation HTMainPoiNavCtl
 
+- (nullable id <UIViewControllerAnimatedTransitioning>)navigationController:(UINavigationController *)navigationController
+                                            animationControllerForOperation:(UINavigationControllerOperation)operation
+                                                         fromViewController:(UIViewController *)fromVC
+                                                           toViewController:(UIViewController *)toVC
+{
+    if (operation == UINavigationControllerOperationPush) {
+        return [[HTTransitionOne alloc]initWithOperation:YES];
+    }
+    else
+    {
+        return nil;
+    }
+}
+
+
 - (instancetype)init
 {
     self = [super init];
@@ -37,6 +53,9 @@
     
     _position = 2;
     
+    self.delegate = self;
+    
+    self.view.backgroundColor = [HTColor ht_whiteColor];
     self.view.layer.cornerRadius = 5;
     self.view.layer.borderColor = [HTColor textColor_666666].CGColor;
     self.view.layer.borderWidth = 0.5;
@@ -44,11 +63,10 @@
     
     self.topFrame = CGRectMake(0, 0, IphoneWidth, IphoneHeight);
     self.centerFrame = CGRectMake(4, IphoneHeight*0.5, IphoneWidth-8, IphoneHeight*0.5);
-    self.bottomFrame = CGRectMake(4, IphoneHeight-(self.view.superview.safeAreaInsets.bottom + 80), IphoneWidth-8, self.view.superview.safeAreaInsets.bottom + 80);
-    self.hiddenFrame = CGRectMake(4, IphoneHeight-(self.view.superview.safeAreaInsets.bottom), IphoneWidth-8, self.view.superview.safeAreaInsets.bottom + 80);
+    self.bottomFrame = CGRectMake(4, IphoneHeight-(self.view.superview.safeAreaInsets.bottom + 70), IphoneWidth-8, self.view.superview.safeAreaInsets.bottom + 70);
+    self.hiddenFrame = CGRectMake(4, IphoneHeight-(self.view.superview.safeAreaInsets.bottom), IphoneWidth-8, self.view.superview.safeAreaInsets.bottom + 70);
 
     self.view.frame = self.bottomFrame;
-    
     
     UIImageView *swipeImage = [[UIImageView alloc]initWithFrame:CGRectZero];
     self.swipeImage = swipeImage;
@@ -130,12 +148,10 @@
     }
 }
 
+
 -(UIViewController *)popViewControllerAnimated:(BOOL)animated
 {
-    if (self.viewControllers.count<=1) {
-        self.position = 2;
-    }
-    return [super popViewControllerAnimated:animated];
+    return [super popViewControllerAnimated:NO];
 }
 
 -(void)hiddenScreen

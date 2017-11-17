@@ -10,7 +10,7 @@
 
 @interface HTPoiSearchItemModel : RLMObject
 
-@property NSInteger ID;
+//@property NSInteger ID;
 
 @property NSString * address;
 

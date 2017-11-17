@@ -13,4 +13,10 @@
 
 +(void)showMessage:(NSString *)message forView:(UIView *)view;
 
++(MBProgressHUD *)LoadingShowMessage:(NSString *)message andDetailMessage:(NSString *)detailMessage forView:(UIView *)view;
++(MBProgressHUD *)LoadingShowMessage:(NSString *)message forView:(UIView *)view;
++(void)HiddenForView:(UIView *)view;
++(MBProgressHUD *)LoadingShowMessage:(NSString *)message;
++(void)Hidden;
+
 @end

@@ -9,7 +9,6 @@
 #ifndef HTToolSet_h
 #define HTToolSet_h
 
-#import "PGColorManager.h"
 
 //Tools
 #import "HTTools.h"

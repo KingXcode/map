@@ -31,20 +31,6 @@
 
 
 
-//获取未读消息数量 --客户询问小红点
-+(NSInteger)getUnreadCustomChatNum
-{
-    NSInteger unreadNum = 0;
-    NSArray *conversations = [[EMClient sharedClient].chatManager getAllConversations];
-    for (EMConversation *conversation in conversations) {
-        if ([conversation.conversationId rangeOfString:@"pg_user"].location != NSNotFound || ([conversation.conversationId rangeOfString:@"pg_third"].location != NSNotFound)) {
-            unreadNum = unreadNum + conversation.unreadMessagesCount;
-        }
-    }
-    return unreadNum;
-}
-
-
 
 
 +(NSUInteger)ht_getRandomNumber:(NSUInteger)from to:(NSUInteger)to

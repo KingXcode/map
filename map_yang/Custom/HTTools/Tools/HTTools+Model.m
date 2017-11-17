@@ -7,6 +7,7 @@
 //
 
 #import "HTTools+Model.h"
+#import "HTTools+String.h"
 
 @implementation HTTools (Model)
 

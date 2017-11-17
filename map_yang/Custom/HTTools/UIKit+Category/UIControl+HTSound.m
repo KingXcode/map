@@ -8,6 +8,7 @@
 
 #import "UIControl+HTSound.h"
 #import <objc/runtime.h>
+#import <AVFoundation/AVFoundation.h>
 
 static char const * const ht_kSoundsKey = "ht_kSoundsKey";
 

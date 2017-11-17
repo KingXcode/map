@@ -12,6 +12,7 @@
 #import <MAMapKit/MAMapKit.h>
 #import <AMapFoundationKit/AMapFoundationKit.h>
 #import "HTPoiSearchItemModel.h"
+#import "HTPOIDetailInfoViewController.h"
 
 @interface HTMainPoiViewController ()<UISearchBarDelegate,AMapSearchDelegate,UITableViewDelegate,UITableViewDataSource>
 
@@ -39,7 +40,9 @@
 
 -(RLMResults<HTPoiSearchItemModel *> *)dataArray
 {
-    _dataArray = [HTPoiSearchItemModel allObjects];
+    if (_dataArray == nil) {
+        _dataArray = [HTPoiSearchItemModel allObjects];
+    }
     return _dataArray;
 }
 
@@ -61,10 +64,18 @@
 
     [self creatUI];
     
+    //恶心?----高德的问题?
+    AMapInputTipsSearchRequest *tips = [[AMapInputTipsSearchRequest alloc] init];
+    tips.keywords = @" ";
+    tips.cityLimit = YES;
+    [self.search AMapInputTipsSearch:tips];
+    
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(topFullScreen) name:@"topFullScreen" object:nil];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(halfscreen) name:@"halfscreen" object:nil];
 
 }
+
+
 
 -(void)topFullScreen
 {
@@ -99,18 +110,19 @@
     self.searchBar  = searchBar;
     
     
-    UITableView *tableView = [[UITableView alloc]initWithFrame:CGRectZero style:UITableViewStylePlain];
+    UITableView *tableView = [[UITableView alloc]initWithFrame:CGRectZero style:UITableViewStyleGrouped];
     tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
     tableView.delegate = self;
     tableView.dataSource = self;
     tableView.bounces = YES;
     tableView.keyboardDismissMode = UIScrollViewKeyboardDismissModeOnDrag;
     tableView.backgroundColor = [HTColor ht_whiteColor];
-    tableView.tableFooterView = [UIView new];
+    tableView.tableHeaderView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, IphoneWidth, 0.1)];
+    tableView.tableFooterView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, IphoneWidth, 0.1)];
     tableView.estimatedRowHeight = 0;
     tableView.estimatedSectionHeaderHeight = 0;
     tableView.estimatedSectionFooterHeight = 0;
-    
+    tableView.delaysContentTouches = NO;
     self.tableView = tableView;
     [self.view addSubview:tableView];
 
@@ -130,8 +142,6 @@
     
     
     
-    
-    
 }
 
 -(void)viewWillAppear:(BOOL)animated
@@ -142,6 +152,7 @@
 
 -(void)viewWillDisappear:(BOOL)animated
 {
+    [self.view endEditing:YES];
     [super viewWillDisappear:animated];
     [self.navigationController setNavigationBarHidden:NO animated:YES];
 }
@@ -171,25 +182,38 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
     if (cell == nil) {
         cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"cell"];
+        cell.textLabel.textColor = [HTColor textColor_333333];
+        cell.detailTextLabel.textColor = [HTColor textColor_999999];
     }
     if (self.isSearch)
     {
+        cell.textLabel.font = [UIFont systemFontOfSize:15];
+        cell.detailTextLabel.font = [UIFont systemFontOfSize:12];
         AMapTip *tips = self.tips[indexPath.row];
         cell.textLabel.text = tips.name;
         cell.detailTextLabel.text = tips.address;
     }
     else
     {
+        cell.textLabel.font = [UIFont boldSystemFontOfSize:20];
+        cell.detailTextLabel.font = [UIFont systemFontOfSize:15];
         HTPoiSearchItemModel *model = self.dataArray[indexPath.row];
-        cell.textLabel.text = model.address;
-        cell.detailTextLabel.text = model.city;
+        cell.textLabel.text = model.name;
+        cell.detailTextLabel.text = model.address;
     }
     return cell;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 44;
+    if (self.isSearch)
+    {
+        return 44;
+    }
+    else
+    {
+        return 77;
+    }
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -198,37 +222,73 @@
     if (self.isSearch)
     {
         AMapTip *tips = self.tips[indexPath.row];
-
         NSString *query = [NSString stringWithFormat:@"uid = '%@' AND name = '%@'",tips.uid,tips.name];
         RLMResults<HTPoiSearchItemModel *> *items = [HTPoiSearchItemModel objectsWhere:query];
-        
+        HTPoiSearchItemModel *model = [[HTPoiSearchItemModel alloc]init];
+        model.address = tips.address;
+        model.city = [HTMapManager sharedManager].currentCity;
+        model.longitude = tips.location.longitude;
+        model.latitude  = tips.location.latitude;
+        model.uid = tips.uid;
+        model.name = tips.name;
+        model.adcode = tips.adcode;
+        model.district = tips.district;
+        [self searchPOIKeywords:model];
         if (items.count<=0) {
-            HTPoiSearchItemModel *model = [[HTPoiSearchItemModel alloc]init];
-            model.address = tips.address;
-            model.city = [HTMapManager sharedManager].currentCity;
-            model.longitude = tips.location.longitude;
-            model.latitude  = tips.location.latitude;
-            model.uid = tips.uid;
-            model.name = tips.name;
-            model.adcode = tips.adcode;
-            model.district = tips.district;
-            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-                [[HTDataBaseManager sharedManager].realm transactionWithBlock:^{
-                    [[HTDataBaseManager sharedManager].realm addObject:model];
-                }];
-            });
-
-            [self searchPOIKeywords:model.name];
-//            [[HTDataBaseManager sharedManager].realm beginWriteTransaction];
-//            [[HTDataBaseManager sharedManager].realm addObject:model];
-//            [[HTDataBaseManager sharedManager].realm commitWriteTransaction];
+            [[HTDataBaseManager sharedManager].realm beginWriteTransaction];
+            [[HTDataBaseManager sharedManager].realm addObject:model];
+            [[HTDataBaseManager sharedManager].realm commitWriteTransaction];
+            self.dataArray = [HTPoiSearchItemModel allObjects];
         }
     }
     else
     {
-    
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            HTPoiSearchItemModel *model = self.dataArray[indexPath.row];
+            [self searchPOIKeywords:model];
+        });
     }
 }
+
+-(BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (self.isSearch) {
+        return NO;
+    }
+    else
+    {
+        return YES;
+    }
+}
+
+-(NSArray<UITableViewRowAction *>* )tableView:(UITableView *)tableView editActionsForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    UITableViewRowAction *action_0 = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleNormal title:@"删除" handler:^(UITableViewRowAction * _Nonnull action, NSIndexPath * _Nonnull indexPath) {
+        HTPoiSearchItemModel *model = self.dataArray[indexPath.row];
+        [[HTDataBaseManager sharedManager].realm beginWriteTransaction];
+        [[HTDataBaseManager sharedManager].realm deleteObject:model];
+        [[HTDataBaseManager sharedManager].realm commitWriteTransaction];
+        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationLeft];
+    }];
+    return @[action_0];
+}
+
+-(UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
+{
+    UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+    [button setTitleColor:[HTColor textColor_666666] forState:UIControlStateNormal];
+    [button setBackgroundImage:[HTTools ht_createImageWithColor:[HTColor ht_emptyColor]] forState:UIControlStateNormal];
+    [button setBackgroundImage:[HTTools ht_createImageWithColor:[HTColor textColor_999999]] forState:UIControlStateHighlighted];
+    button.titleLabel.font = [UIFont systemFontOfSize:15];
+    [button setTitle:@"清空所有数据" forState:UIControlStateNormal];
+    button.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
+    return button;
+}
+-(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
+{
+    return 44;
+}
+
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView;
 {
@@ -241,13 +301,16 @@
 }
 
 
--(void)searchPOIKeywords:(NSString *)keywords
+-(void)searchPOIKeywords:(HTPoiSearchItemModel *)model
 {
+    [HTProgressHUD LoadingShowMessage:model.name andDetailMessage:@"正在搜索中..." forView:self.view];
     AMapPOIKeywordsSearchRequest *request = [[AMapPOIKeywordsSearchRequest alloc]init];
-    request.keywords            = keywords;
+    request.keywords            = model.name;
     request.city                = [HTMapManager sharedManager].currentCity;
     request.requireExtension    = YES;
     request.cityLimit           = YES;
+    request.requireSubPOIs      = YES;
+    request.location = [AMapGeoPoint locationWithLatitude:model.latitude longitude:model.longitude];
     [self.searchApi AMapPOIKeywordsSearch:request];
 }
 
@@ -259,7 +322,7 @@
     if ([nav isKindOfClass:[HTMainPoiNavCtl class]]) {
         nav.position = 1;
     }
-    [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationFade];
+    [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationAutomatic];
 }
 
 - (BOOL)searchBarShouldBeginEditing:(UISearchBar *)searchBar
@@ -293,11 +356,11 @@
     if (searchText.length == 0) {
         [self.tips removeAllObjects];
         self.isSearch = NO;
-        [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationFade];
+        [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationAutomatic];
         return;
     }
     self.isSearch = YES;
-    [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationFade];
+    [self.tableView reloadData];
     
     AMapInputTipsSearchRequest *tips = [[AMapInputTipsSearchRequest alloc] init];
     tips.keywords = searchText;
@@ -307,6 +370,17 @@
 }
 
 
+
+
+#pragma mark - AMapSearchDelegate
+- (void)AMapSearchRequest:(id)request didFailWithError:(NSError *)error
+{
+    if ([request isKindOfClass:[AMapPOIKeywordsSearchRequest class]]) {
+        [HTProgressHUD HiddenForView:self.view];
+    }
+    NSLog(@"Error: %@", error);
+}
+
 /**
  * @brief POI查询回调函数
  * @param request  发起的请求，具体字段参考 AMapPOISearchBaseRequest 及其子类。
@@ -314,11 +388,17 @@
  */
 - (void)onPOISearchDone:(AMapPOISearchBaseRequest *)request response:(AMapPOISearchResponse *)response
 {
-    NSLog(@"onPOISearchDone ----  %@",response);
+    [HTProgressHUD HiddenForView:self.view];
     if (response.pois.count == 0)
     {
         return;
     }
+    AMapPOI *poi = response.pois.firstObject;
+    HTPOIDetailInfoViewController *vc = [[HTPOIDetailInfoViewController alloc]init];
+    vc.poi = poi;
+    [self.navigationController pushViewController:vc animated:YES];
+    self.isSearch = NO;
+    [self.tableView reloadData];
 }
 
 /* 输入提示回调. */

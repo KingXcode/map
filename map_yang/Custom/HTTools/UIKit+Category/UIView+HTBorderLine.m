@@ -70,7 +70,7 @@ static const void *HTViewRightLine = &HTViewRightLine;
     UIView *topLine = objc_getAssociatedObject(self, HTViewTopLine);
     if (topLine == nil) {
         topLine = [UIView new];
-        topLine.backgroundColor = UIColorFromRGB(0xe1e1e1);
+        topLine.backgroundColor = UIColorFromHex(0xe1e1e1);
         [self addSubview:topLine];
         topLine.hidden = YES;
         objc_setAssociatedObject(self, HTViewTopLine, topLine, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
@@ -96,7 +96,8 @@ static const void *HTViewRightLine = &HTViewRightLine;
 
 -(void)ht_setTopLeftAndRightMargins:(HTMargins)point
 {
-    [self.topLine updateConstraints:^(MASConstraintMaker *make) {
+    
+    [self.topLine mas_updateConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self).mas_offset(point.left);
         make.right.equalTo(self).mas_offset(point.right);
     }];
@@ -114,7 +115,7 @@ static const void *HTViewRightLine = &HTViewRightLine;
     UIView *bottomLine = objc_getAssociatedObject(self, HTViewBottomLine);
     if (bottomLine == nil) {
         bottomLine = [UIView new];
-        bottomLine.backgroundColor = UIColorFromRGB(0xe1e1e1);
+        bottomLine.backgroundColor = UIColorFromHex(0xe1e1e1);
         [self addSubview:bottomLine];
         bottomLine.hidden = YES;
         objc_setAssociatedObject(self, HTViewBottomLine, bottomLine, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
@@ -140,7 +141,7 @@ static const void *HTViewRightLine = &HTViewRightLine;
 
 -(void)ht_setLeftAndRightMargins:(HTMargins)point
 {
-    [self.bottomLine updateConstraints:^(MASConstraintMaker *make) {
+    [self.bottomLine mas_updateConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self).mas_offset(point.left);
         make.right.equalTo(self).mas_offset(point.right);
     }];
@@ -149,7 +150,7 @@ static const void *HTViewRightLine = &HTViewRightLine;
 
 -(void)ht_updateBottomLineHeight:(CGFloat)height
 {
-    [self.bottomLine updateConstraints:^(MASConstraintMaker *make) {
+    [self.bottomLine mas_updateConstraints:^(MASConstraintMaker *make) {
         make.height.mas_equalTo(height);
     }];
     [self layoutIfNeeded];
@@ -168,7 +169,7 @@ static const void *HTViewRightLine = &HTViewRightLine;
     UIView *rightLine = objc_getAssociatedObject(self, HTViewBottomLine);
     if (rightLine == nil) {
         rightLine = [UIView new];
-        rightLine.backgroundColor = UIColorFromRGB(0xe1e1e1);
+        rightLine.backgroundColor = UIColorFromHex(0xe1e1e1);
         [self addSubview:rightLine];
         rightLine.hidden = YES;
         objc_setAssociatedObject(self, HTViewRightLine, rightLine, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
@@ -194,7 +195,7 @@ static const void *HTViewRightLine = &HTViewRightLine;
 
 -(void)ht_setTopAndBottomMargins:(HTMargins)point
 {
-    [self.rightLine updateConstraints:^(MASConstraintMaker *make) {
+    [self.rightLine mas_updateConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self).mas_offset(point.left);
         make.bottom.equalTo(self).mas_offset(-point.right);
     }];
@@ -209,7 +210,7 @@ static const void *HTViewRightLine = &HTViewRightLine;
 -(void)ht_creatDashedLayerSize:(CGSize)size
 {
     CAShapeLayer *border = [CAShapeLayer layer];
-    border.strokeColor = [MyColor pg_lineColor].CGColor;
+    border.strokeColor = [HTColor ht_lineColor].CGColor;
     border.fillColor = nil;
     border.path = [UIBezierPath bezierPathWithRect:CGRectMake(0, 0, size.width, size.height)].CGPath;
     border.frame = CGRectMake(0, 0, size.width, size.height);

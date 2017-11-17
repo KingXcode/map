@@ -497,7 +497,7 @@
         {
             //除法的除数不能为0
             if (lastNum.doubleValue == 0) {
-                [MBProgressHUD showError:@"Divisor can't be zero"];
+                [HTProgressHUD showMessage:@"Divisor can't be zero" forView:nil];
                 return @"ERROR";
             }
             return [[firstNum decimalNumberByDividingBy:lastNum] stringValue];

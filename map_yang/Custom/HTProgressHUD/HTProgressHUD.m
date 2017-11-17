@@ -28,4 +28,53 @@
     });
 }
 
++(MBProgressHUD *)LoadingShowMessage:(NSString *)message andDetailMessage:(NSString *)detailMessage forView:(UIView *)view
+{
+    if (view == nil) {
+        view = [UIApplication sharedApplication].keyWindow;
+    }
+    MBProgressHUD *hub = [MBProgressHUD showHUDAddedTo:view animated:YES];
+    hub.label.text = message;
+    if (detailMessage) {
+        hub.detailsLabel.text = detailMessage;
+    }
+    hub.label.textColor = [HTColor textColor_333333];
+    hub.margin = 15;
+    hub.mode = MBProgressHUDModeIndeterminate;
+    return hub;
+}
+
++(MBProgressHUD *)LoadingShowMessage:(NSString *)message forView:(UIView *)view
+{
+    return [self LoadingShowMessage:message andDetailMessage:nil forView:view];
+//    if (view == nil) {
+//        view = [UIApplication sharedApplication].keyWindow;
+//    }
+//    MBProgressHUD *hub = [MBProgressHUD showHUDAddedTo:view animated:YES];
+//    hub.label.text = message;
+//    hub.label.textColor = [HTColor textColor_333333];
+//    hub.margin = 15;
+//    hub.mode = MBProgressHUDModeIndeterminate;
+//    return hub;
+}
+
++(void)HiddenForView:(UIView *)view
+{
+    if (view == nil) {
+        view = [UIApplication sharedApplication].keyWindow;
+    }
+    [MBProgressHUD hideHUDForView:view animated:YES];
+}
+
++(MBProgressHUD *)LoadingShowMessage:(NSString *)message
+{
+    return [self LoadingShowMessage:message forView:nil];
+}
+
++(void)Hidden
+{
+    [self HiddenForView:nil];
+}
+
+
 @end

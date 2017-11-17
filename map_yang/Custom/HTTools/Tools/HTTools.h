@@ -16,9 +16,6 @@
 
 @interface HTTools : NSObject
 
-//获取未读消息数量 --客户询问小红点
-+(NSInteger)getUnreadCustomChatNum;
-
 /**
  生成随机数
  */
