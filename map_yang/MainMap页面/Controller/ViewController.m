@@ -95,7 +95,7 @@
     self.poiNavCtl = [[HTMainPoiNavCtl alloc]initWithRootViewController:self.poiCtl];
     __weak typeof(self) __self = self;
     [self.poiNavCtl setShowScreenPosition:^(NSInteger position) {
-        if (position == 1)
+        if (position == 0 || position == 1)
         {
             MAMapStatus *status = [MAMapStatus statusWithCenterCoordinate:__self.mapView.centerCoordinate zoomLevel:__self.mapView.zoomLevel rotationDegree:0 cameraDegree:0 screenAnchor:CGPointMake(0.5, 0.25)];
             [__self.mapView setMapStatus:status animated:YES duration:0.25];

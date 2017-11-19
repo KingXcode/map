@@ -33,6 +33,11 @@ PODS:
     - Realm/Headers (= 3.0.1)
   - Realm/Headers (3.0.1)
   - RESideMenu (4.0.7)
+  - SDCycleScrollView (1.74):
+    - SDWebImage (>= 4.0.0)
+  - SDWebImage (4.2.2):
+    - SDWebImage/Core (= 4.2.2)
+  - SDWebImage/Core (4.2.2)
   - WMPageController (2.4.3)
   - YYKit (1.0.9):
     - YYKit/no-arc (= 1.0.9)
@@ -50,6 +55,7 @@ DEPENDENCIES:
   - MJRefresh
   - Realm
   - RESideMenu
+  - SDCycleScrollView (~> 1.73)
   - WMPageController
   - YYKit
 
@@ -67,9 +73,11 @@ SPEC CHECKSUMS:
   MJRefresh: 9af70f5f9327a2cf87f0fb5929f35fcc2fa638ea
   Realm: ba6144c74f835f7497791f6599d63a7755377b83
   RESideMenu: f24c508404b49c667344c54aba7e590883533958
+  SDCycleScrollView: f821215226f6146a35470721a9d6e83ec5cfb04b
+  SDWebImage: 89a9d32cd520bbb46eb14e541d5109b3564af198
   WMPageController: 4c7f2c636675a71aea5eecf8fdc07a0ce86954e3
   YYKit: 7cda43304a8dc3696c449041e2cb3107b4e236e7
 
-PODFILE CHECKSUM: 38dc2dadbb5dd240e97706dc69eab62e33299e8a
+PODFILE CHECKSUM: a1210e18a2df0acf16a08addada5e038fbbda306
 
 COCOAPODS: 1.3.1

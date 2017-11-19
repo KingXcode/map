@@ -12,6 +12,8 @@
 
 @interface HTPOIDetailInfoViewController ()<AMapSearchDelegate,UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic,strong) AMapSearchAPI * searchApi;
+
+@property (nonatomic, strong) NSMutableArray * topDataArray;
 @property (nonatomic, strong) NSMutableArray<AMapPOI *> *dataArray;
 
 
@@ -27,6 +29,13 @@
         _dataArray = [NSMutableArray array];
     }
     return _dataArray;
+}
+-(NSMutableArray *)topDataArray
+{
+    if (_topDataArray == nil) {
+        _topDataArray = [NSMutableArray array];
+    }
+    return _topDataArray;
 }
 
 - (instancetype)init
@@ -61,6 +70,7 @@
     [super viewDidLoad];
     self.view.backgroundColor = [HTColor ht_whiteColor];
     [self creatUI];
+    
 }
 
 -(void)viewDidAppear:(BOOL)animated
@@ -122,49 +132,105 @@
 #pragma -mark- tableView delegate  datasuoce
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 1;
+    return 2;
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return self.dataArray.count;
+    if (section == 0)
+    {
+        return self.topDataArray.count;
+    }
+    else
+    {
+        return self.dataArray.count;
+    }
 }
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
-    if (cell == nil) {
-        cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
-    }
-    if (indexPath.row>=self.dataArray.count) {
-        cell.textLabel.text = @"";
+
+    if (indexPath.section == 0)
+    {
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell_0"];
+        if (cell == nil) {
+            cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell_0"];
+        }
         return cell;
     }
-    AMapPOI *poi = self.dataArray[indexPath.row];
-    cell.textLabel.text = poi.name;
-    return cell;
+    else
+    {
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
+        if (cell == nil) {
+            cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
+            [cell ht_setBottomLine];
+        }
+        if (indexPath.row>=self.dataArray.count) {
+            cell.textLabel.text = @"";
+            return cell;
+        }
+        AMapPOI *poi = self.dataArray[indexPath.row];
+        cell.textLabel.text = poi.name;
+        return cell;
+    }
+        
+
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 50;
+    if (indexPath.section == 0)
+    {
+        return 44;
+    }
+    else
+    {
+        return 50;
+    }
 }
 
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
-    HTPOIDetailInfoHeaderView *view = [[HTPOIDetailInfoHeaderView alloc]init];
-    [view configData:self.poi];
-    return view;
+    if (section == 0)
+    {
+        HTPOIDetailInfoHeaderView *view = [[HTPOIDetailInfoHeaderView alloc]init];
+        [view configData:self.poi];
+        return view;
+    }
+    else
+    {
+        UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+        [button setTitleColor:[HTColor textColor_333333] forState:UIControlStateNormal];
+        [button setBackgroundColor:[HTColor ht_emptyColor]];
+        button.titleLabel.font = [UIFont systemFontOfSize:12];
+        [button setImage:[UIImage imageNamed:@"icon_near"] forState:UIControlStateNormal];
+        [button setTitle:@"周边" forState:UIControlStateNormal];
+        button.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
+        [button setContentEdgeInsets:UIEdgeInsetsMake(0, 4, 0, 0)];
+        return button;
+    }
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    if (self.poi.images.count>0)
+    if (section == 0)
     {
-        return 200 + IphoneWidth*9/16;
+        if (self.poi.images.count>0)
+        {
+            return 200 + IphoneWidth*9/16;
+        }
+        else
+        {
+            return 200;
+        }
     }
     else
     {
-        return 200;
+        return 25;
     }
+}
+
+-(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
+{
+    return 0.1;
 }
 
 
@@ -184,6 +250,7 @@
     AMapPOI *poi = self.dataArray[indexPath.row];
     self.poi = poi;
     [[NSNotificationCenter defaultCenter]postNotificationName:MainPoiPoint object:poi];
+    [tableView setContentOffset:CGPointMake(0.f, -50.f) animated:YES];
 }
 
 

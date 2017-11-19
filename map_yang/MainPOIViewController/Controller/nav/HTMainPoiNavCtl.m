@@ -55,6 +55,8 @@
     
     self.delegate = self;
     
+    self.navigationBar.tintColor = [HTColor textColor_666666];
+    
     self.view.backgroundColor = [HTColor ht_whiteColor];
     self.view.layer.cornerRadius = 5;
     self.view.layer.borderColor = [HTColor textColor_666666].CGColor;

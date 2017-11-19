@@ -23,6 +23,8 @@
 		CBF454761FB87EDB00D05B04 /* HTDataBaseManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CBF454751FB87EDB00D05B04 /* HTDataBaseManager.m */; };
 		CBF4547A1FB8809100D05B04 /* HTPoiSearchItemModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CBF454791FB8809100D05B04 /* HTPoiSearchItemModel.m */; };
 		CBF4547E1FC176C800D05B04 /* HTPOIDetailInfoHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = CBF4547D1FC176C800D05B04 /* HTPOIDetailInfoHeaderView.m */; };
+		CBF454811FC1BD2B00D05B04 /* HTPOIDetailInfoSubView.m in Sources */ = {isa = PBXBuildFile; fileRef = CBF454801FC1BD2B00D05B04 /* HTPOIDetailInfoSubView.m */; };
+		CBF454831FC1BD4300D05B04 /* HTPOIDetailInfoSubView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CBF454821FC1BD4300D05B04 /* HTPOIDetailInfoSubView.xib */; };
 		FB1B49A71FB54E7A001A1DA3 /* HTPointAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = FB1B49A61FB54E7A001A1DA3 /* HTPointAnnotation.m */; };
 		FB1B49AE1FB58723001A1DA3 /* HTLiveWeatherInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = FB1B49AD1FB58723001A1DA3 /* HTLiveWeatherInfoView.m */; };
 		FB1B49B01FB58B6F001A1DA3 /* HTLiveWeatherInfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = FB1B49AF1FB58B6F001A1DA3 /* HTLiveWeatherInfoView.xib */; };
@@ -104,6 +106,9 @@
 		CBF454791FB8809100D05B04 /* HTPoiSearchItemModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HTPoiSearchItemModel.m; sourceTree = "<group>"; };
 		CBF4547C1FC176C800D05B04 /* HTPOIDetailInfoHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HTPOIDetailInfoHeaderView.h; sourceTree = "<group>"; };
 		CBF4547D1FC176C800D05B04 /* HTPOIDetailInfoHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HTPOIDetailInfoHeaderView.m; sourceTree = "<group>"; };
+		CBF4547F1FC1BD2B00D05B04 /* HTPOIDetailInfoSubView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HTPOIDetailInfoSubView.h; sourceTree = "<group>"; };
+		CBF454801FC1BD2B00D05B04 /* HTPOIDetailInfoSubView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HTPOIDetailInfoSubView.m; sourceTree = "<group>"; };
+		CBF454821FC1BD4300D05B04 /* HTPOIDetailInfoSubView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HTPOIDetailInfoSubView.xib; sourceTree = "<group>"; };
 		FB1B49A51FB54E7A001A1DA3 /* HTPointAnnotation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HTPointAnnotation.h; sourceTree = "<group>"; };
 		FB1B49A61FB54E7A001A1DA3 /* HTPointAnnotation.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HTPointAnnotation.m; sourceTree = "<group>"; };
 		FB1B49AC1FB58723001A1DA3 /* HTLiveWeatherInfoView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HTLiveWeatherInfoView.h; sourceTree = "<group>"; };
@@ -367,6 +372,9 @@
 			children = (
 				CBF4547C1FC176C800D05B04 /* HTPOIDetailInfoHeaderView.h */,
 				CBF4547D1FC176C800D05B04 /* HTPOIDetailInfoHeaderView.m */,
+				CBF4547F1FC1BD2B00D05B04 /* HTPOIDetailInfoSubView.h */,
+				CBF454801FC1BD2B00D05B04 /* HTPOIDetailInfoSubView.m */,
+				CBF454821FC1BD4300D05B04 /* HTPOIDetailInfoSubView.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -653,6 +661,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CBE6F8B71FB0D01500DD346B /* LaunchScreen.storyboard in Resources */,
+				CBF454831FC1BD4300D05B04 /* HTPOIDetailInfoSubView.xib in Resources */,
 				CBE6F8B41FB0D01500DD346B /* Assets.xcassets in Resources */,
 				FBFBA2151FB4518900B83ACC /* HTMapTypeCell.xib in Resources */,
 				CBE6F8B21FB0D01500DD346B /* Main.storyboard in Resources */,
@@ -766,6 +775,7 @@
 				FB1B4A4B1FBD8DC1001A1DA3 /* NSArray+HTTools.m in Sources */,
 				CBF454761FB87EDB00D05B04 /* HTDataBaseManager.m in Sources */,
 				CBE6F8AC1FB0D01500DD346B /* AppDelegate.m in Sources */,
+				CBF454811FC1BD2B00D05B04 /* HTPOIDetailInfoSubView.m in Sources */,
 				FB1B4A641FBD8DC1001A1DA3 /* UIScrollView+HTAddition.m in Sources */,
 				FBFBA2141FB4518900B83ACC /* HTMapTypeCell.m in Sources */,
 				FB1B4A531FBD8DC1001A1DA3 /* HTTools+Date.m in Sources */,
