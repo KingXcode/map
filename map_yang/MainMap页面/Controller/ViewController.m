@@ -22,6 +22,7 @@
 #import "HTMainPoiViewController.h"
 #import "HTMainPoiNavCtl.h"
 #import "UIControl+HTClicked.h"
+#import "HTPOIDetailInfoViewController.h"
 
 
 @interface ViewController ()<MAMapViewDelegate,AMapSearchDelegate>
@@ -84,12 +85,27 @@
     
     //配置poi信息 控制器
     [self configPoiCtl];
+    
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(setPoiPoint:) name:MainPoiPoint object:nil];
 }
 
 -(void)configPoiCtl
 {
     self.poiCtl = [[HTMainPoiViewController alloc]init];
     self.poiNavCtl = [[HTMainPoiNavCtl alloc]initWithRootViewController:self.poiCtl];
+    __weak typeof(self) __self = self;
+    [self.poiNavCtl setShowScreenPosition:^(NSInteger position) {
+        if (position == 1)
+        {
+            MAMapStatus *status = [MAMapStatus statusWithCenterCoordinate:__self.mapView.centerCoordinate zoomLevel:__self.mapView.zoomLevel rotationDegree:0 cameraDegree:0 screenAnchor:CGPointMake(0.5, 0.25)];
+            [__self.mapView setMapStatus:status animated:YES duration:0.25];
+        }
+        else
+        {
+            MAMapStatus *status = [MAMapStatus statusWithCenterCoordinate:__self.mapView.centerCoordinate zoomLevel:__self.mapView.zoomLevel rotationDegree:0 cameraDegree:0 screenAnchor:CGPointMake(0.5, 0.5)];
+            [__self.mapView setMapStatus:status animated:YES duration:0.25];
+        }
+    }];
     [self addChildViewController:self.poiNavCtl];
     [self.view addSubview:self.poiNavCtl.view];
     [self.poiNavCtl didMoveToParentViewController:self];
@@ -288,6 +304,7 @@
 {
     if (pois.count>0) {
         
+        [self.poiNavCtl popToRootViewControllerAnimated:NO];
         MATouchPoi *touchPoi = pois.firstObject;
         HTPointAnnotation *annotation = [[HTPointAnnotation alloc] init];
         annotation.coordinate = touchPoi.coordinate;
@@ -302,6 +319,8 @@
         MATouchPoi *poi = pois.firstObject;
         AMapPOIIDSearchRequest *request = [[AMapPOIIDSearchRequest alloc]init];
         request.uid = poi.uid;
+        request.requireSubPOIs = YES;
+        request.requireExtension = YES;
         [self.search AMapPOIIDSearch:request];
     }
 }
@@ -350,7 +369,6 @@
     annotationView.image = [UIImage imageNamed:@"b_poi_hl"];
     annotationView.layer.anchorPoint = CGPointMake(0.5, 0.9189);
     annotationView.bounds = CGRectMake(0, 0, 44, 54);
-    
     return annotationView;
 }
 
@@ -376,7 +394,11 @@
  */
 - (void)onPOISearchDone:(AMapPOISearchBaseRequest *)request response:(AMapPOISearchResponse *)response
 {
-    NSLog(@"--------:%@",response);
+    [self.poiNavCtl popToRootViewControllerAnimated:YES];
+    AMapPOI *poi = response.pois.firstObject;
+    HTPOIDetailInfoViewController *vc = [[HTPOIDetailInfoViewController alloc]init];
+    vc.poi = poi;
+    [self.poiNavCtl pushViewController:vc animated:YES];
 }
 
 /**
@@ -447,9 +469,6 @@
     [self.mapView setZoomLevel:16 animated:YES];
     [self.mapView setCenterCoordinate:self.mapView.userLocation.coordinate animated:YES];
     [self.mapView setRotationDegree:0 animated:YES duration:0.5];
-    
-    
-
 }
 
 //点击详细信息按钮
@@ -459,6 +478,26 @@
 
 }
 
+//设置poi点 通过通知
+-(void)setPoiPoint:(NSNotification *)noti
+{
+    AMapPOI *poi = noti.object;
+    CLLocationCoordinate2D coor = CLLocationCoordinate2DMake(poi.location.latitude, poi.location.longitude);
+    HTPointAnnotation *annotation = [[HTPointAnnotation alloc] init];
+    annotation.coordinate = coor;
+    annotation.title      = poi.name;
+    annotation.pointType  = 0;
+    [self.mapView removeAnnotation:self.poiAnnotation];
+    [self.mapView addAnnotation:annotation];
+    [self.mapView selectAnnotation:annotation animated:YES];
+    self.poiAnnotation = annotation;
+    [self.mapView setCenterCoordinate:coor animated:YES];
+}
+
+-(void)dealloc
+{
+    [[NSNotificationCenter defaultCenter]removeObserver:self];
+}
 
 
 - (void)didReceiveMemoryWarning {

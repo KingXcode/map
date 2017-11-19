@@ -9,11 +9,11 @@
 #import <Foundation/Foundation.h>
 
 
-#define Setting_ScreenCandela    @"屏幕常亮-设置"
-#define Setting_RotateEnabled    @"旋转手势-设置"
+#define Setting_ScreenCandela          @"屏幕常亮-设置"
+#define Setting_RotateEnabled          @"旋转手势-设置"
 #define Setting_RotateCameraEnabled    @"切换视角-设置"
-#define Setting_UsualAddress     @"地图上显示常用地址-设置"
-#define Setting_RecommendAddress @"显示推荐的常用地址-设置"
+#define Setting_UsualAddress           @"地图上显示常用地址-设置"
+#define Setting_RecommendAddress       @"显示推荐的常用地址-设置"
 
 /**
  系统设置管理类

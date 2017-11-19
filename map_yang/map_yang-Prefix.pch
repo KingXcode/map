@@ -34,5 +34,5 @@
 #define IphoneWidth [UIScreen mainScreen].bounds.size.width
 #define IphoneHeight [UIScreen mainScreen].bounds.size.height
 
-
+#define MainPoiPoint @"setPoiPoint"
 #endif /* map_yang_Prefix_pch_pch */

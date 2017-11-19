@@ -115,9 +115,10 @@
             position = 0;
         }
     }
-
     _position = position;
-    
+    if (_showScreenPosition) {
+        _showScreenPosition(_position);
+    }
     switch (_position) {
         case 10:
         {

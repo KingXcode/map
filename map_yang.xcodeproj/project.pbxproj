@@ -22,6 +22,7 @@
 		CBF454701FB7D3FB00D05B04 /* HTMainPoiNavCtl.m in Sources */ = {isa = PBXBuildFile; fileRef = CBF4546F1FB7D3FB00D05B04 /* HTMainPoiNavCtl.m */; };
 		CBF454761FB87EDB00D05B04 /* HTDataBaseManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CBF454751FB87EDB00D05B04 /* HTDataBaseManager.m */; };
 		CBF4547A1FB8809100D05B04 /* HTPoiSearchItemModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CBF454791FB8809100D05B04 /* HTPoiSearchItemModel.m */; };
+		CBF4547E1FC176C800D05B04 /* HTPOIDetailInfoHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = CBF4547D1FC176C800D05B04 /* HTPOIDetailInfoHeaderView.m */; };
 		FB1B49A71FB54E7A001A1DA3 /* HTPointAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = FB1B49A61FB54E7A001A1DA3 /* HTPointAnnotation.m */; };
 		FB1B49AE1FB58723001A1DA3 /* HTLiveWeatherInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = FB1B49AD1FB58723001A1DA3 /* HTLiveWeatherInfoView.m */; };
 		FB1B49B01FB58B6F001A1DA3 /* HTLiveWeatherInfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = FB1B49AF1FB58B6F001A1DA3 /* HTLiveWeatherInfoView.xib */; };
@@ -101,6 +102,8 @@
 		CBF454751FB87EDB00D05B04 /* HTDataBaseManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HTDataBaseManager.m; sourceTree = "<group>"; };
 		CBF454781FB8809100D05B04 /* HTPoiSearchItemModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HTPoiSearchItemModel.h; sourceTree = "<group>"; };
 		CBF454791FB8809100D05B04 /* HTPoiSearchItemModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HTPoiSearchItemModel.m; sourceTree = "<group>"; };
+		CBF4547C1FC176C800D05B04 /* HTPOIDetailInfoHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HTPOIDetailInfoHeaderView.h; sourceTree = "<group>"; };
+		CBF4547D1FC176C800D05B04 /* HTPOIDetailInfoHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HTPOIDetailInfoHeaderView.m; sourceTree = "<group>"; };
 		FB1B49A51FB54E7A001A1DA3 /* HTPointAnnotation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HTPointAnnotation.h; sourceTree = "<group>"; };
 		FB1B49A61FB54E7A001A1DA3 /* HTPointAnnotation.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HTPointAnnotation.m; sourceTree = "<group>"; };
 		FB1B49AC1FB58723001A1DA3 /* HTLiveWeatherInfoView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HTLiveWeatherInfoView.h; sourceTree = "<group>"; };
@@ -359,6 +362,15 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		CBF4547B1FC176A700D05B04 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				CBF4547C1FC176C800D05B04 /* HTPOIDetailInfoHeaderView.h */,
+				CBF4547D1FC176C800D05B04 /* HTPOIDetailInfoHeaderView.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		FB1B49A81FB54E7F001A1DA3 /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -415,6 +427,7 @@
 		FB1B49FF1FBD8B21001A1DA3 /* POI搜索详情 */ = {
 			isa = PBXGroup;
 			children = (
+				CBF4547B1FC176A700D05B04 /* View */,
 				FB1B4A001FBD8B4D001A1DA3 /* HTPOIDetailInfoViewController.h */,
 				FB1B4A011FBD8B4D001A1DA3 /* HTPOIDetailInfoViewController.m */,
 			);
@@ -717,6 +730,7 @@
 				FB1B4A5B1FBD8DC1001A1DA3 /* HTTools+String.m in Sources */,
 				FB1B4A661FBD8DC1001A1DA3 /* UITableViewCell+HTDelaysContentTouches.m in Sources */,
 				FB1B4A601FBD8DC1001A1DA3 /* UIImageView+HTReflect.m in Sources */,
+				CBF4547E1FC176C800D05B04 /* HTPOIDetailInfoHeaderView.m in Sources */,
 				FB1B4A5D1FBD8DC1001A1DA3 /* HTTools.m in Sources */,
 				FB1B4A571FBD8DC1001A1DA3 /* HTTools+Label.m in Sources */,
 				FB1B49AE1FB58723001A1DA3 /* HTLiveWeatherInfoView.m in Sources */,

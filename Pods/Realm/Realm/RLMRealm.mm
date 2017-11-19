@@ -363,7 +363,7 @@ REALM_NOINLINE static void translateSharedGroupOpenException(RLMRealmConfigurati
 
     {
         Realm::Config& config = configuration.config;
-
+        
         // try to reuse existing realm first
         if (cache || dynamic) {
             if (RLMRealm *realm = RLMGetThreadLocalCachedRealmForPath(config.path)) {

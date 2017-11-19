@@ -47,29 +47,17 @@
 }
 
 
--(AMapSearchAPI *)search
-{
-    if (_searchApi == nil) {
-        _searchApi = [[AMapSearchAPI alloc]init];
-        _searchApi.delegate = self;
-    }
-    return _searchApi;
-}
-
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.title = @"";
     self.view.backgroundColor = [HTColor ht_whiteColor];
 
     [self creatUI];
     
-    //恶心?----高德的问题?
-    AMapInputTipsSearchRequest *tips = [[AMapInputTipsSearchRequest alloc] init];
-    tips.keywords = @" ";
-    tips.cityLimit = YES;
-    [self.search AMapInputTipsSearch:tips];
-    
+    self.searchApi = [[AMapSearchAPI alloc]init];
+    self.searchApi.delegate = self;
+
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(topFullScreen) name:@"topFullScreen" object:nil];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(halfscreen) name:@"halfscreen" object:nil];
 
@@ -150,10 +138,11 @@
     [self.navigationController setNavigationBarHidden:YES animated:YES];
 }
 
--(void)viewWillDisappear:(BOOL)animated
+
+-(void)viewDidDisappear:(BOOL)animated
 {
     [self.view endEditing:YES];
-    [super viewWillDisappear:animated];
+    [super viewDidDisappear:animated];
     [self.navigationController setNavigationBarHidden:NO animated:YES];
 }
 
@@ -269,12 +258,20 @@
         [[HTDataBaseManager sharedManager].realm deleteObject:model];
         [[HTDataBaseManager sharedManager].realm commitWriteTransaction];
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationLeft];
+        self.view.userInteractionEnabled = NO;
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [tableView reloadData];
+            self.view.userInteractionEnabled = YES;
+        });
     }];
     return @[action_0];
 }
 
 -(UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
 {
+    if (self.dataArray.count <=0 || self.isSearch == YES) {
+        return nil;
+    }
     UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
     [button setTitleColor:[HTColor textColor_666666] forState:UIControlStateNormal];
     [button setBackgroundImage:[HTTools ht_createImageWithColor:[HTColor ht_emptyColor]] forState:UIControlStateNormal];
@@ -282,10 +279,25 @@
     button.titleLabel.font = [UIFont systemFontOfSize:15];
     [button setTitle:@"清空所有数据" forState:UIControlStateNormal];
     button.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
+    [button addBlockForControlEvents:UIControlEventTouchUpInside block:^(id  _Nonnull sender) {
+        [[HTDataBaseManager sharedManager].realm beginWriteTransaction];
+        [[HTDataBaseManager sharedManager].realm deleteObjects:self.dataArray];
+        [[HTDataBaseManager sharedManager].realm commitWriteTransaction];
+
+        [tableView reloadSection:0 withRowAnimation:UITableViewRowAnimationFade];
+        self.view.userInteractionEnabled = NO;
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [tableView reloadData];
+            self.view.userInteractionEnabled = YES;
+        });
+    }];
     return button;
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
 {
+    if (self.dataArray.count <=0 || self.isSearch == YES) {
+        return 0.1;
+    }
     return 44;
 }
 
@@ -318,10 +330,7 @@
 - (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar
 {
     self.isSearch = NO;
-    HTMainPoiNavCtl *nav = (HTMainPoiNavCtl *)self.navigationController;
-    if ([nav isKindOfClass:[HTMainPoiNavCtl class]]) {
-        nav.position = 1;
-    }
+    [self.view endEditing:YES];
     [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationAutomatic];
 }
 
@@ -366,7 +375,7 @@
     tips.keywords = searchText;
     tips.city     = [HTMapManager sharedManager].currentCity;
     tips.cityLimit = YES;
-    [self.search AMapInputTipsSearch:tips];
+    [self.searchApi AMapInputTipsSearch:tips];
 }
 
 
