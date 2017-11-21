@@ -25,6 +25,7 @@
 		CBF4547E1FC176C800D05B04 /* HTPOIDetailInfoHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = CBF4547D1FC176C800D05B04 /* HTPOIDetailInfoHeaderView.m */; };
 		CBF454811FC1BD2B00D05B04 /* HTPOIDetailInfoSubView.m in Sources */ = {isa = PBXBuildFile; fileRef = CBF454801FC1BD2B00D05B04 /* HTPOIDetailInfoSubView.m */; };
 		CBF454831FC1BD4300D05B04 /* HTPOIDetailInfoSubView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CBF454821FC1BD4300D05B04 /* HTPOIDetailInfoSubView.xib */; };
+		FB10E74D1FC27F210073A289 /* UIView+AddClick.m in Sources */ = {isa = PBXBuildFile; fileRef = FB10E74C1FC27F200073A289 /* UIView+AddClick.m */; };
 		FB1B49A71FB54E7A001A1DA3 /* HTPointAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = FB1B49A61FB54E7A001A1DA3 /* HTPointAnnotation.m */; };
 		FB1B49AE1FB58723001A1DA3 /* HTLiveWeatherInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = FB1B49AD1FB58723001A1DA3 /* HTLiveWeatherInfoView.m */; };
 		FB1B49B01FB58B6F001A1DA3 /* HTLiveWeatherInfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = FB1B49AF1FB58B6F001A1DA3 /* HTLiveWeatherInfoView.xib */; };
@@ -109,6 +110,8 @@
 		CBF4547F1FC1BD2B00D05B04 /* HTPOIDetailInfoSubView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HTPOIDetailInfoSubView.h; sourceTree = "<group>"; };
 		CBF454801FC1BD2B00D05B04 /* HTPOIDetailInfoSubView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HTPOIDetailInfoSubView.m; sourceTree = "<group>"; };
 		CBF454821FC1BD4300D05B04 /* HTPOIDetailInfoSubView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HTPOIDetailInfoSubView.xib; sourceTree = "<group>"; };
+		FB10E74B1FC27F200073A289 /* UIView+AddClick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+AddClick.h"; sourceTree = "<group>"; };
+		FB10E74C1FC27F200073A289 /* UIView+AddClick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+AddClick.m"; sourceTree = "<group>"; };
 		FB1B49A51FB54E7A001A1DA3 /* HTPointAnnotation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HTPointAnnotation.h; sourceTree = "<group>"; };
 		FB1B49A61FB54E7A001A1DA3 /* HTPointAnnotation.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HTPointAnnotation.m; sourceTree = "<group>"; };
 		FB1B49AC1FB58723001A1DA3 /* HTLiveWeatherInfoView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HTLiveWeatherInfoView.h; sourceTree = "<group>"; };
@@ -242,6 +245,7 @@
 		CB1BDB761FB21A0D00228A15 /* Custom */ = {
 			isa = PBXGroup;
 			children = (
+				FB10E74A1FC27F200073A289 /* UIView+AddClick */,
 				FB1B4A6C1FBE70B9001A1DA3 /* Transition */,
 				FB1B4A031FBD8DC1001A1DA3 /* HTTools */,
 				CBF454731FB87EBF00D05B04 /* DataBase */,
@@ -377,6 +381,15 @@
 				CBF454821FC1BD4300D05B04 /* HTPOIDetailInfoSubView.xib */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		FB10E74A1FC27F200073A289 /* UIView+AddClick */ = {
+			isa = PBXGroup;
+			children = (
+				FB10E74B1FC27F200073A289 /* UIView+AddClick.h */,
+				FB10E74C1FC27F200073A289 /* UIView+AddClick.m */,
+			);
+			path = "UIView+AddClick";
 			sourceTree = "<group>";
 		};
 		FB1B49A81FB54E7F001A1DA3 /* Model */ = {
@@ -781,6 +794,7 @@
 				FB1B4A531FBD8DC1001A1DA3 /* HTTools+Date.m in Sources */,
 				CBF454701FB7D3FB00D05B04 /* HTMainPoiNavCtl.m in Sources */,
 				CBF4547A1FB8809100D05B04 /* HTPoiSearchItemModel.m in Sources */,
+				FB10E74D1FC27F210073A289 /* UIView+AddClick.m in Sources */,
 				CB1BDB751FB2178300228A15 /* HTProgressHUD.m in Sources */,
 				FB1B4A5A1FBD8DC1001A1DA3 /* HTTools+SandBox.m in Sources */,
 				CBF4546C1FB7CCF700D05B04 /* HTMainPoiViewController.m in Sources */,
@@ -932,6 +946,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "map_yang/map_yang-Prefix.pch";
 				INFOPLIST_FILE = map_yang/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "cn.niesiyang.map-yang";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -949,6 +964,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "map_yang/map_yang-Prefix.pch";
 				INFOPLIST_FILE = map_yang/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "cn.niesiyang.map-yang";
 				PRODUCT_NAME = "$(TARGET_NAME)";

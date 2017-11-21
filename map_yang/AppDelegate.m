@@ -24,6 +24,9 @@
     
     [[HTDataBaseManager sharedManager] creatDataBaseWithName:@"map"];
     
+    
+    
+    
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     ViewController *vc = [[ViewController alloc]init];
     HTRightMenuViewController *rightVc = [[HTRightMenuViewController alloc]init];

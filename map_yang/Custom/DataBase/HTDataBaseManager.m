@@ -30,8 +30,9 @@
     int currentVersion = 1.0;
     config.schemaVersion = currentVersion;
     config.migrationBlock = ^(RLMMigration *migration , uint64_t oldSchemaVersion) {
-        // 这里是设置数据迁移的block
         if (oldSchemaVersion < currentVersion) {
+            // 这里是设置数据迁移的block
+
         }
     };
     [RLMRealmConfiguration setDefaultConfiguration:config];

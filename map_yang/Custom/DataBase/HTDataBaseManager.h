@@ -9,6 +9,10 @@
 #import <Foundation/Foundation.h>
 #import <Realm.h>
 
+
+/**
+ RLMRealm有个好处 这个类中几乎没什么代码,而且不需要用到sqlite代码了
+ */
 @interface HTDataBaseManager : NSObject
 
 +(instancetype)sharedManager;

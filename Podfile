@@ -6,6 +6,8 @@ target 'map_yang' do
   # use_frameworks!
 
   # Pods for map_yang
+  inhibit_all_warnings!
+  
   pod 'AMapNavi'
   pod 'AMapSearch'  
   pod 'AMapLocation'
@@ -20,4 +22,5 @@ target 'map_yang' do
   pod 'RESideMenu'
   pod 'WMPageController'
   pod 'SDCycleScrollView','~> 1.73'
+  
 end

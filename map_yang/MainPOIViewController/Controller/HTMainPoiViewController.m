@@ -102,7 +102,7 @@
     tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
     tableView.delegate = self;
     tableView.dataSource = self;
-    tableView.bounces = YES;
+    tableView.bounces = NO;
     tableView.keyboardDismissMode = UIScrollViewKeyboardDismissModeOnDrag;
     tableView.backgroundColor = [HTColor ht_whiteColor];
     tableView.tableHeaderView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, IphoneWidth, 0.1)];
@@ -128,8 +128,7 @@
         make.left.bottom.right.equalTo(self.view);
     }];
     
-    
-    
+        
 }
 
 -(void)viewWillAppear:(BOOL)animated
@@ -315,7 +314,6 @@
 
 -(void)searchPOIKeywords:(HTPoiSearchItemModel *)model
 {
-    [HTProgressHUD LoadingShowMessage:model.name andDetailMessage:@"正在搜索中..." forView:self.view];
     AMapPOIKeywordsSearchRequest *request = [[AMapPOIKeywordsSearchRequest alloc]init];
     request.keywords            = model.name;
     request.city                = [HTMapManager sharedManager].currentCity;
@@ -324,6 +322,11 @@
     request.requireSubPOIs      = YES;
     request.location = [AMapGeoPoint locationWithLatitude:model.latitude longitude:model.longitude];
     [self.searchApi AMapPOIKeywordsSearch:request];
+    
+    __weak typeof(self) __self = self;
+    [HTProgressHUD LoadingShowMessage:model.name andDetailMessage:@"正在搜索中..." forView:self.view clickedCancel:^{
+        [__self.searchApi cancelAllRequests];
+    }];
 }
 
 #pragma -mark-  搜索代理

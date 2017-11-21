@@ -124,8 +124,8 @@
     request.requireExtension    = YES;
     request.requireSubPOIs      = YES;
     request.page                = self.page;
-    [HTProgressHUD LoadingShowMessage:self.poi.name andDetailMessage:@"正在搜索中..." forView:self.view];
     [self.searchApi AMapPOIAroundSearch:request];
+    [HTProgressHUD LoadingShowMessage:self.poi.name andDetailMessage:@"正在搜索中..." forView:self.view clickedCancel:nil];
 }
 
 
