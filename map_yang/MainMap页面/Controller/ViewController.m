@@ -23,7 +23,7 @@
 #import "HTMainPoiNavCtl.h"
 #import "UIControl+HTClicked.h"
 #import "HTPOIDetailInfoViewController.h"
-
+#import "HTCallout_1_View.h"
 
 @interface ViewController ()<MAMapViewDelegate,AMapSearchDelegate>
 
@@ -310,6 +310,7 @@
         annotation.coordinate = touchPoi.coordinate;
         annotation.title      = touchPoi.name;
         annotation.pointType  = 0;
+        annotation.poi = pois.firstObject;
         [self.mapView removeAnnotation:self.poiAnnotation];
         [self.mapView addAnnotation:annotation];
         [self.mapView selectAnnotation:annotation animated:YES];
@@ -363,9 +364,16 @@
         annotationView = [[MAPinAnnotationView alloc] initWithAnnotation:annotation
                                                          reuseIdentifier:touchPoiReuseIndetifier];
     }
-    annotationView.canShowCallout = NO;
+    annotationView.canShowCallout = YES;
     annotationView.animatesDrop   = NO;
     annotationView.draggable      = NO;
+    HTCallout_1_View *callout = [HTCallout_1_View loadView];
+    callout.annotation = annotation;
+    //点击了 到这去 按钮
+    [callout setArrive:^{
+        
+    }];
+    annotationView.customCalloutView = [[MACustomCalloutView alloc]initWithCustomView:callout];
     annotationView.image = [UIImage imageNamed:@"b_poi_hl"];
     annotationView.layer.anchorPoint = CGPointMake(0.5, 0.9189);
     annotationView.bounds = CGRectMake(0, 0, 44, 54);
@@ -487,6 +495,7 @@
     annotation.coordinate = coor;
     annotation.title      = poi.name;
     annotation.pointType  = 0;
+    annotation.poi = poi;
     [self.mapView removeAnnotation:self.poiAnnotation];
     [self.mapView addAnnotation:annotation];
     [self.mapView selectAnnotation:annotation animated:YES];

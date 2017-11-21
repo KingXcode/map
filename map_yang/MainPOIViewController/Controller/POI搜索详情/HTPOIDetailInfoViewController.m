@@ -64,6 +64,7 @@
     _poi = poi;
     self.title = _poi.name;
     [self refresh];
+    [HTProgressHUD showMessage:_poi.type forView:nil];
 }
 
 - (void)viewDidLoad {

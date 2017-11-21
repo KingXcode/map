@@ -11,6 +11,8 @@
 		CB1BDB711FB1FF9A00228A15 /* HTMapManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CB1BDB701FB1FF9A00228A15 /* HTMapManager.m */; };
 		CB1BDB751FB2178300228A15 /* HTProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = CB1BDB741FB2178300228A15 /* HTProgressHUD.m */; };
 		CB1BDB7A1FB21A4E00228A15 /* HTColor.m in Sources */ = {isa = PBXBuildFile; fileRef = CB1BDB791FB21A4E00228A15 /* HTColor.m */; };
+		CB72BE201FC460ED00057F42 /* HTCallout_1_View.m in Sources */ = {isa = PBXBuildFile; fileRef = CB72BE1F1FC460ED00057F42 /* HTCallout_1_View.m */; };
+		CB72BE221FC460FA00057F42 /* HTCallout_1_View.xib in Resources */ = {isa = PBXBuildFile; fileRef = CB72BE211FC460FA00057F42 /* HTCallout_1_View.xib */; };
 		CBB3D76F1FB34C8000813783 /* HTRightMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CBB3D76E1FB34C8000813783 /* HTRightMenuViewController.m */; };
 		CBE6F8AC1FB0D01500DD346B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = CBE6F8AB1FB0D01500DD346B /* AppDelegate.m */; };
 		CBE6F8AF1FB0D01500DD346B /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CBE6F8AE1FB0D01500DD346B /* ViewController.m */; };
@@ -83,6 +85,9 @@
 		CB1BDB741FB2178300228A15 /* HTProgressHUD.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HTProgressHUD.m; sourceTree = "<group>"; };
 		CB1BDB781FB21A4E00228A15 /* HTColor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HTColor.h; sourceTree = "<group>"; };
 		CB1BDB791FB21A4E00228A15 /* HTColor.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HTColor.m; sourceTree = "<group>"; };
+		CB72BE1E1FC460ED00057F42 /* HTCallout_1_View.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HTCallout_1_View.h; sourceTree = "<group>"; };
+		CB72BE1F1FC460ED00057F42 /* HTCallout_1_View.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HTCallout_1_View.m; sourceTree = "<group>"; };
+		CB72BE211FC460FA00057F42 /* HTCallout_1_View.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HTCallout_1_View.xib; sourceTree = "<group>"; };
 		CBB3D76D1FB34C8000813783 /* HTRightMenuViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HTRightMenuViewController.h; sourceTree = "<group>"; };
 		CBB3D76E1FB34C8000813783 /* HTRightMenuViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HTRightMenuViewController.m; sourceTree = "<group>"; };
 		CBE6F8A71FB0D01500DD346B /* map_yang.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = map_yang.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -587,6 +592,9 @@
 			children = (
 				FBFBA2061FB2C53300B83ACC /* HTMainMapInfoView.h */,
 				FBFBA2071FB2C53300B83ACC /* HTMainMapInfoView.m */,
+				CB72BE1E1FC460ED00057F42 /* HTCallout_1_View.h */,
+				CB72BE1F1FC460ED00057F42 /* HTCallout_1_View.m */,
+				CB72BE211FC460FA00057F42 /* HTCallout_1_View.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -680,6 +688,7 @@
 				CBE6F8B21FB0D01500DD346B /* Main.storyboard in Resources */,
 				FB1B49B81FB696AF001A1DA3 /* hyy1gjm.ttf in Resources */,
 				FB1B49B01FB58B6F001A1DA3 /* HTLiveWeatherInfoView.xib in Resources */,
+				CB72BE221FC460FA00057F42 /* HTCallout_1_View.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -789,6 +798,7 @@
 				CBF454761FB87EDB00D05B04 /* HTDataBaseManager.m in Sources */,
 				CBE6F8AC1FB0D01500DD346B /* AppDelegate.m in Sources */,
 				CBF454811FC1BD2B00D05B04 /* HTPOIDetailInfoSubView.m in Sources */,
+				CB72BE201FC460ED00057F42 /* HTCallout_1_View.m in Sources */,
 				FB1B4A641FBD8DC1001A1DA3 /* UIScrollView+HTAddition.m in Sources */,
 				FBFBA2141FB4518900B83ACC /* HTMapTypeCell.m in Sources */,
 				FB1B4A531FBD8DC1001A1DA3 /* HTTools+Date.m in Sources */,

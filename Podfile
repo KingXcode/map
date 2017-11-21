@@ -22,5 +22,7 @@ target 'map_yang' do
   pod 'RESideMenu'
   pod 'WMPageController'
   pod 'SDCycleScrollView','~> 1.73'
+  pod 'WMPageController', '~> 2.4.0'
+  pod 'SandBoxFileList'
   
 end

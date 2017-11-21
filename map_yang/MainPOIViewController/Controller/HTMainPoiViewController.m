@@ -102,7 +102,7 @@
     tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
     tableView.delegate = self;
     tableView.dataSource = self;
-    tableView.bounces = NO;
+    tableView.bounces = YES;
     tableView.keyboardDismissMode = UIScrollViewKeyboardDismissModeOnDrag;
     tableView.backgroundColor = [HTColor ht_whiteColor];
     tableView.tableHeaderView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, IphoneWidth, 0.1)];
@@ -114,7 +114,6 @@
     self.tableView = tableView;
     [self.view addSubview:tableView];
 
-    
     
     [searchBar mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.view).mas_offset(10);
@@ -381,6 +380,14 @@
     [self.searchApi AMapInputTipsSearch:tips];
 }
 
+- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
+{
+    if([searchBar.text isEqualToString:@"terminal://pushsandbox"])
+    {
+        FileListTableViewController *vc = [[FileListTableViewController alloc]init];
+        [self presentViewController:vc animated:YES completion:nil] ;
+    }
+}
 
 
 

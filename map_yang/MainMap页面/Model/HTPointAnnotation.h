@@ -17,5 +17,10 @@
 @property (nonatomic,assign) NSInteger pointType;
 
 
+/**
+ pointType == 0 有效
+ */
+@property (nonatomic,strong) AMapPOI * poi;
+
 
 @end
