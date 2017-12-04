@@ -22,55 +22,48 @@ HTMarginsMake(CGFloat left, CGFloat right)
     HTMargins p; p.left = left; p.right = right; return p;
 }
 
-/**
- 暂时只做了顶部和底部的线  其它的线要用的时候再写
- */
 @interface UIView (HTBorderLine)
+
 
 /**
  设置view的底部阴影
- 与ht_setTopShadow 方法互斥 时间比较急以后有时间再改这里
  */
--(void)ht_setBottomShadow;
+-(void)ht_bottomShadow;
 /**
  设置view的顶部阴影
  */
--(void)ht_setTopShadow;
+-(void)ht_topShadow;
+
+#pragma -mark-  topline
+-(void)ht_topLineShow;
+-(void)ht_topLineHidden;
+-(void)ht_topLineLeftAndRightMargins:(HTMargins)point;
+-(void)ht_topLineHeightUpdate:(CGFloat)height;
+-(void)ht_topLineColorUpdate:(UIColor *)color;
+
+#pragma -mark-  bottomline
+-(void)ht_bottomLineShow;
+-(void)ht_bottomLineHidden;
+-(void)ht_bottomLineLeftAndRightMargins:(HTMargins)point;
+-(void)ht_bottomLineHeightUpdate:(CGFloat)height;
+-(void)ht_bottomLineColorUpdate:(UIColor *)color;
+
+#pragma -mark-  rightline
+-(void)ht_rightLineShow;
+-(void)ht_rightLineHidden;
+-(void)ht_rightLineTopAndBottomMargins:(HTMargins)point;
+-(void)ht_rightLineHeightUpdate:(CGFloat)height;
+-(void)ht_rightLineColorUpdate:(UIColor *)color;
+
+#pragma -mark-  leftLine
+-(void)ht_leftLineShow;
+-(void)ht_leftLineHidden;
+-(void)ht_leftLineTopAndBottomMargins:(HTMargins)point;
+-(void)ht_leftLineHeightUpdate:(CGFloat)height;
+-(void)ht_leftLineColorUpdate:(UIColor *)color;
+
+#pragma -mark- 设置虚线
+-(CAShapeLayer *)ht_creatDashedLayerSize:(CGSize)size;
 
 
-/**
- 左下设置阴影
- */
--(void)ht_setLeftAndBottomShadow;
-
-
--(void)ht_setTopLine;
--(void)ht_hiddenTopLine;
--(void)ht_setTopLeftAndRightMargins:(HTMargins)point;
-
-
-/**
- 显示隐藏底部现款线
- */
--(void)ht_setBottomLine;
--(void)ht_hiddenBottomLine;
-/**
- 设置底部线的左右边距
- */
--(void)ht_setLeftAndRightMargins:(HTMargins)point;
--(void)ht_updateBottomLineHeight:(CGFloat)height;
--(void)ht_updateBottomLineColor:(UIColor *)color;
-
-
-
-/**
- 显示隐藏右侧现款线
- */
--(void)ht_setRightLine;
--(void)ht_hiddenRightLine;
--(void)ht_setTopAndBottomMargins:(HTMargins)point;
-
-
-//设置虚线
--(void)ht_creatDashedLayerSize:(CGSize)size;
 @end

@@ -84,15 +84,15 @@
         make.height.mas_equalTo(5);
     }];
     
-//    UISwipeGestureRecognizer *swipeUP = [[UISwipeGestureRecognizer alloc]initWithTarget:self action:@selector(swipe:)];
-//    swipeUP.direction = UISwipeGestureRecognizerDirectionUp;
-//    [self.view addGestureRecognizer:swipeUP];
-//    UISwipeGestureRecognizer *swipeDown = [[UISwipeGestureRecognizer alloc]initWithTarget:self action:@selector(swipe:)];
-//    swipeDown.direction = UISwipeGestureRecognizerDirectionDown;
-//    [self.view addGestureRecognizer:swipeDown];
+    UISwipeGestureRecognizer *swipeUP = [[UISwipeGestureRecognizer alloc]initWithTarget:self action:@selector(swipe:)];
+    swipeUP.direction = UISwipeGestureRecognizerDirectionUp;
+    [self.view addGestureRecognizer:swipeUP];
+    UISwipeGestureRecognizer *swipeDown = [[UISwipeGestureRecognizer alloc]initWithTarget:self action:@selector(swipe:)];
+    swipeDown.direction = UISwipeGestureRecognizerDirectionDown;
+    [self.view addGestureRecognizer:swipeDown];
     
-    UIPanGestureRecognizer *pan = [[UIPanGestureRecognizer alloc]initWithTarget:self action:@selector(pan:)];
-    [self.view addGestureRecognizer:pan];
+//    UIPanGestureRecognizer *pan = [[UIPanGestureRecognizer alloc]initWithTarget:self action:@selector(pan:)];
+//    [self.view addGestureRecognizer:pan];
 }
     
 
