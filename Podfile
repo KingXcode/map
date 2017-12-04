@@ -14,7 +14,6 @@ target 'map_yang' do
   pod 'MJExtension'
   pod 'MJRefresh'
   pod 'Masonry'
-  pod 'YYKit'
   pod 'Realm'
   pod 'MBProgressHUD'
   pod 'AFNetworking'
@@ -24,5 +23,9 @@ target 'map_yang' do
   pod 'SDCycleScrollView','~> 1.73'
   pod 'WMPageController', '~> 2.4.0'
   pod 'SandBoxFileList'
-  
+  pod 'YYText'
+  pod 'YYImage'
+  pod 'YYWebImage'
+  pod 'YYCategories'
+
 end
