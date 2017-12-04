@@ -22,5 +22,9 @@
  */
 @property (nonatomic,strong) AMapPOI * poi;
 
+//是否显示callout
+@property (nonatomic,assign) BOOL canShowCallout;
+
+
 
 @end

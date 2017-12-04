@@ -15,6 +15,10 @@
     
 @property (nonatomic,strong) HTPointAnnotation * annotation;
 
+
 @property (nonatomic, copy) void(^arrive)();
+
+
+@property (nonatomic, copy) void(^selectType)(NSString *type);
 
 @end

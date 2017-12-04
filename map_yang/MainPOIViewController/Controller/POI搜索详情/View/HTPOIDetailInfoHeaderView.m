@@ -80,7 +80,7 @@
     [self addSubview:subView];
     self.subView = subView;
     
-    [self ht_setBottomLine];
+    [self ht_bottomLineShow];
     
     [scorllImages mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.left.right.equalTo(self);

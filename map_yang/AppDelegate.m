@@ -31,6 +31,8 @@
     ViewController *vc = [[ViewController alloc]init];
     HTRightMenuViewController *rightVc = [[HTRightMenuViewController alloc]init];
     UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:vc];
+    navigationController.navigationBar.tintColor = [HTColor textColor_666666];
+
     RESideMenu *sideMenuViewController = [[RESideMenu alloc] initWithContentViewController:navigationController
                                                                     leftMenuViewController:nil
                                                                    rightMenuViewController:rightVc];

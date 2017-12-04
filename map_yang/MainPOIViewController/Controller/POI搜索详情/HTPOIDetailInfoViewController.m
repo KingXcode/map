@@ -8,12 +8,13 @@
 
 #import "HTPOIDetailInfoViewController.h"
 #import "HTMainPoiNavCtl.h"
+#import "HTPoiCell.h"
 #import "HTPOIDetailInfoHeaderView.h"
 
 @interface HTPOIDetailInfoViewController ()<AMapSearchDelegate,UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic,strong) AMapSearchAPI * searchApi;
 
-@property (nonatomic, strong) NSMutableArray * topDataArray;
+@property (nonatomic, strong) NSMutableArray * topDataArray;//暂时时空数据  我以后可能会要在这里插新的数据
 @property (nonatomic, strong) NSMutableArray<AMapPOI *> *dataArray;
 
 
@@ -64,7 +65,6 @@
     _poi = poi;
     self.title = _poi.name;
     [self refresh];
-    [HTProgressHUD showMessage:_poi.type forView:nil];
 }
 
 - (void)viewDidLoad {
@@ -120,7 +120,7 @@
 -(void)requestData
 {
     AMapPOIAroundSearchRequest *request = [[AMapPOIAroundSearchRequest alloc] init];
-    request.location       = [AMapGeoPoint locationWithLatitude:self.poi.location.latitude longitude:self.poi.location.longitude];
+    request.location            = [AMapGeoPoint locationWithLatitude:self.poi.location.latitude longitude:self.poi.location.longitude];
     request.sortrule            = 0;
     request.requireExtension    = YES;
     request.requireSubPOIs      = YES;
@@ -146,6 +146,7 @@
         return self.dataArray.count;
     }
 }
+
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
 
@@ -159,10 +160,10 @@
     }
     else
     {
-        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
+        HTPoiCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
         if (cell == nil) {
-            cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
-            [cell ht_setBottomLine];
+            cell = [[HTPoiCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
+            [cell ht_bottomLineShow];
         }
         if (indexPath.row>=self.dataArray.count) {
             cell.textLabel.text = @"";
@@ -172,8 +173,6 @@
         cell.textLabel.text = poi.name;
         return cell;
     }
-        
-
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath

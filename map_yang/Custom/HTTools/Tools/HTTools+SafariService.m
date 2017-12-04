@@ -16,7 +16,6 @@
     NSString *version = [[UIDevice currentDevice] systemVersion];
     
     if (version.integerValue>=10) {
-        
         SFSafariViewController *vc = [[SFSafariViewController alloc]initWithURL:url];
         [controller presentViewController:vc animated:YES completion:nil];
         return vc;

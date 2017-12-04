@@ -69,6 +69,8 @@
 		FB1B4A6A1FBD8DC1001A1DA3 /* UIView+HTExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = FB1B4A481FBD8DC1001A1DA3 /* UIView+HTExtension.m */; };
 		FB1B4A6B1FBD8DC1001A1DA3 /* UIView+HTRedPoint.m in Sources */ = {isa = PBXBuildFile; fileRef = FB1B4A4A1FBD8DC1001A1DA3 /* UIView+HTRedPoint.m */; };
 		FB1B4A6F1FBE70E0001A1DA3 /* HTTransitionOne.m in Sources */ = {isa = PBXBuildFile; fileRef = FB1B4A6E1FBE70E0001A1DA3 /* HTTransitionOne.m */; };
+		FB828F3F1FD531EC009D3BEA /* HTPOIAroundSearchController.m in Sources */ = {isa = PBXBuildFile; fileRef = FB828F3E1FD531EC009D3BEA /* HTPOIAroundSearchController.m */; };
+		FB828F431FD54952009D3BEA /* HTPoiCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FB828F421FD54952009D3BEA /* HTPoiCell.m */; };
 		FBFBA2081FB2C53300B83ACC /* HTMainMapInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = FBFBA2071FB2C53300B83ACC /* HTMainMapInfoView.m */; };
 		FBFBA2101FB43FB100B83ACC /* HTMapSelectTypeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FBFBA20F1FB43FB100B83ACC /* HTMapSelectTypeCell.m */; };
 		FBFBA2141FB4518900B83ACC /* HTMapTypeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FBFBA2121FB4518900B83ACC /* HTMapTypeCell.m */; };
@@ -200,6 +202,10 @@
 		FB1B4A4A1FBD8DC1001A1DA3 /* UIView+HTRedPoint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+HTRedPoint.m"; sourceTree = "<group>"; };
 		FB1B4A6D1FBE70E0001A1DA3 /* HTTransitionOne.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HTTransitionOne.h; sourceTree = "<group>"; };
 		FB1B4A6E1FBE70E0001A1DA3 /* HTTransitionOne.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HTTransitionOne.m; sourceTree = "<group>"; };
+		FB828F3D1FD531EC009D3BEA /* HTPOIAroundSearchController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HTPOIAroundSearchController.h; sourceTree = "<group>"; };
+		FB828F3E1FD531EC009D3BEA /* HTPOIAroundSearchController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HTPOIAroundSearchController.m; sourceTree = "<group>"; };
+		FB828F411FD54952009D3BEA /* HTPoiCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HTPoiCell.h; sourceTree = "<group>"; };
+		FB828F421FD54952009D3BEA /* HTPoiCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HTPoiCell.m; sourceTree = "<group>"; };
 		FBFBA2061FB2C53300B83ACC /* HTMainMapInfoView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HTMainMapInfoView.h; sourceTree = "<group>"; };
 		FBFBA2071FB2C53300B83ACC /* HTMainMapInfoView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HTMainMapInfoView.m; sourceTree = "<group>"; };
 		FBFBA20E1FB43FB100B83ACC /* HTMapSelectTypeCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HTMapSelectTypeCell.h; sourceTree = "<group>"; };
@@ -332,6 +338,7 @@
 		CBF454681FB7CCBE00D05B04 /* MainPOIViewController */ = {
 			isa = PBXGroup;
 			children = (
+				FB828F401FD54934009D3BEA /* View */,
 				CBF454771FB8802B00D05B04 /* Model */,
 				CBF454691FB7CCD400D05B04 /* Controller */,
 			);
@@ -341,6 +348,7 @@
 		CBF454691FB7CCD400D05B04 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				FB828F3C1FD531AD009D3BEA /* POI周边 */,
 				FB1B49FF1FBD8B21001A1DA3 /* POI搜索详情 */,
 				CBF4546D1FB7D3D100D05B04 /* nav */,
 				CBF4546A1FB7CCF700D05B04 /* HTMainPoiViewController.h */,
@@ -568,6 +576,24 @@
 			path = Transition;
 			sourceTree = "<group>";
 		};
+		FB828F3C1FD531AD009D3BEA /* POI周边 */ = {
+			isa = PBXGroup;
+			children = (
+				FB828F3D1FD531EC009D3BEA /* HTPOIAroundSearchController.h */,
+				FB828F3E1FD531EC009D3BEA /* HTPOIAroundSearchController.m */,
+			);
+			path = "POI周边";
+			sourceTree = "<group>";
+		};
+		FB828F401FD54934009D3BEA /* View */ = {
+			isa = PBXGroup;
+			children = (
+				FB828F411FD54952009D3BEA /* HTPoiCell.h */,
+				FB828F421FD54952009D3BEA /* HTPoiCell.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		FBFBA2031FB2C48000B83ACC /* MainMap页面 */ = {
 			isa = PBXGroup;
 			children = (
@@ -773,7 +799,9 @@
 				FB1B4A581FBD8DC1001A1DA3 /* HTTools+Model.m in Sources */,
 				FB1B4A5C1FBD8DC1001A1DA3 /* HTTools+Systerm.m in Sources */,
 				FB1B4A6B1FBD8DC1001A1DA3 /* UIView+HTRedPoint.m in Sources */,
+				FB828F3F1FD531EC009D3BEA /* HTPOIAroundSearchController.m in Sources */,
 				FBFBA2101FB43FB100B83ACC /* HTMapSelectTypeCell.m in Sources */,
+				FB828F431FD54952009D3BEA /* HTPoiCell.m in Sources */,
 				FB1B4A4D1FBD8DC1001A1DA3 /* NSObject+HTAOP.m in Sources */,
 				FB1B4A521FBD8DC1001A1DA3 /* HTTools+Cache.m in Sources */,
 				FB1B4A651FBD8DC1001A1DA3 /* UIScrollView+HTPages.m in Sources */,
