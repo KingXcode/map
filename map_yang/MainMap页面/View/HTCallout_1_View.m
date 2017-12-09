@@ -21,6 +21,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *arriveBtn;
 @property (weak, nonatomic) IBOutlet UILabel  *titleLabel;
 @property (weak, nonatomic) IBOutlet UILabel  *typeLabel;
+@property (weak, nonatomic) IBOutlet UILabel  *distanceLabel;
 
     
 @end
@@ -33,6 +34,12 @@
     if ([_annotation.poi isKindOfClass:[AMapPOI class]]) {
         self.titleLabel.text = _annotation.poi.name;
         self.typeLabel.text  = _annotation.poi.type;
+        //1.将两个经纬度点转成投影点
+        MAMapPoint point1 = MAMapPointForCoordinate([HTMapManager sharedManager].userLocation.location.coordinate);
+        MAMapPoint point2 = MAMapPointForCoordinate(CLLocationCoordinate2DMake(_annotation.poi.location.latitude,_annotation.poi.location.longitude));
+        //2.计算距离
+        CLLocationDistance distance = MAMetersBetweenMapPoints(point1,point2);
+        self.distanceLabel.text = [NSString stringWithFormat:@"您距离这里:%d米",(int)distance];
     }
 }
     

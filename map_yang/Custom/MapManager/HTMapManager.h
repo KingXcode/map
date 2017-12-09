@@ -26,5 +26,6 @@
 
 @property (nonatomic,strong) MAUserLocation *userLocation;
 
+- (NSArray *)getInstalledMapAppWithStartLocation:(CLLocationCoordinate2D)startLocation EndLocation:(CLLocationCoordinate2D)endLocation;
 
 @end

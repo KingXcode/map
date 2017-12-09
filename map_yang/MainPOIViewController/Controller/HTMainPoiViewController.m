@@ -277,20 +277,23 @@
     button.titleLabel.font = [UIFont systemFontOfSize:15];
     [button setTitle:@"清空所有数据" forState:UIControlStateNormal];
     button.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
-    [button addBlockForControlEvents:UIControlEventTouchUpInside block:^(id  _Nonnull sender) {
-        [[HTDataBaseManager sharedManager].realm beginWriteTransaction];
-        [[HTDataBaseManager sharedManager].realm deleteObjects:self.dataArray];
-        [[HTDataBaseManager sharedManager].realm commitWriteTransaction];
-
-        [tableView reloadSection:0 withRowAnimation:UITableViewRowAnimationFade];
-        self.view.userInteractionEnabled = NO;
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            [tableView reloadData];
-            self.view.userInteractionEnabled = YES;
-        });
-    }];
+    [button addTarget:self action:@selector(clickedBtn:) forControlEvents:UIControlEventTouchUpInside];
     return button;
 }
+
+-(void)clickedBtn:(UIButton *)sender
+{
+    [[HTDataBaseManager sharedManager].realm beginWriteTransaction];
+    [[HTDataBaseManager sharedManager].realm deleteObjects:self.dataArray];
+    [[HTDataBaseManager sharedManager].realm commitWriteTransaction];
+    [_tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationFade];
+    self.view.userInteractionEnabled = NO;
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [_tableView reloadData];
+        self.view.userInteractionEnabled = YES;
+    });
+}
+
 -(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
 {
     if (self.dataArray.count <=0 || self.isSearch == YES) {

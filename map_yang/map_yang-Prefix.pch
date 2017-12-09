@@ -22,7 +22,8 @@
 #import "HTDataBaseManager.h"
 #import <MJRefresh.h>
 #import "HTToolSet.h"
-#import <YYKit.h>
+#import <YYText.h>
+#import <YYImage.h>
 #import "UIView+AddClick.h"
 #import <FileListTableViewController.h>
 

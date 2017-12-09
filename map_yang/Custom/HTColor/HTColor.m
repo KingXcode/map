@@ -51,4 +51,9 @@
     return UIColorFromHex(0xf5f5f5);
 }
 
++(UIColor *)ht_mianColor
+{
+    return UIColorFromHex(0x53cac3);
+}
+
 @end

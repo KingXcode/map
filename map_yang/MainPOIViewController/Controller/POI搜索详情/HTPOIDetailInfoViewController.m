@@ -170,7 +170,7 @@
             return cell;
         }
         AMapPOI *poi = self.dataArray[indexPath.row];
-        cell.textLabel.text = poi.name;
+        [cell configModel:poi andIndexPath:indexPath];
         return cell;
     }
 }
@@ -183,7 +183,21 @@
     }
     else
     {
-        return 50;
+        if (self.dataArray.count<1) {
+            return 0.1;
+        }
+        AMapPOI *poi = self.dataArray[indexPath.row];
+        NSString *name = poi.name;
+        NSString *type = [NSString stringWithFormat:@"类型:   %@",[poi.type stringByReplacingOccurrencesOfString:@";" withString:@"\n类型:   "]];
+        NSString *tel = [NSString stringWithFormat:@"电话号码:   %@",poi.tel];
+        NSString *dist = [NSString stringWithFormat:@"距离查询位置:   %zd米",poi.distance];
+        
+        CGFloat nameHeight = [name ht_heightOfFont:[UIFont systemFontOfSize:15] limitWidth:(IphoneWidth-30)];
+        CGFloat typeHeight = [type ht_heightOfFont:[UIFont systemFontOfSize:15] limitWidth:(IphoneWidth-30)];
+        CGFloat telHeight  = [tel  ht_heightOfFont:[UIFont systemFontOfSize:15] limitWidth:(IphoneWidth-30)];
+        CGFloat distHeight = [dist ht_heightOfFont:[UIFont systemFontOfSize:15] limitWidth:(IphoneWidth-30)];
+        
+        return 10+5+5+5+10+nameHeight+typeHeight+telHeight+distHeight;
     }
 }
 

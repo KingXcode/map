@@ -31,7 +31,7 @@
                         <action selector="arrive:" destination="iN0-l3-epB" eventType="touchUpInside" id="Isp-X8-fSa"/>
                     </connections>
                 </button>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="---" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aDk-O5-0CR">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="---" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aDk-O5-0CR">
                     <rect key="frame" x="8" y="8" width="152" height="20"/>
                     <constraints>
                         <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="20" id="P0T-BW-seo"/>
@@ -49,14 +49,23 @@
                     <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="---" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Y9g-Xq-hFm">
+                    <rect key="frame" x="8" y="49" width="152" height="17"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="aDk-O5-0CR" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="8" id="4WR-Ic-F2h"/>
                 <constraint firstItem="tvg-x8-OsM" firstAttribute="trailing" secondItem="aDk-O5-0CR" secondAttribute="trailing" id="5gA-KX-QiT"/>
+                <constraint firstItem="Y9g-Xq-hFm" firstAttribute="leading" secondItem="tvg-x8-OsM" secondAttribute="leading" id="Eg9-zP-R65"/>
+                <constraint firstItem="Y9g-Xq-hFm" firstAttribute="trailing" secondItem="tvg-x8-OsM" secondAttribute="trailing" id="JMp-gK-S6J"/>
                 <constraint firstItem="iGo-sh-bLA" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="e58-V2-vpb"/>
                 <constraint firstItem="aDk-O5-0CR" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="8" id="fQ9-ej-moU"/>
                 <constraint firstItem="tvg-x8-OsM" firstAttribute="leading" secondItem="aDk-O5-0CR" secondAttribute="leading" id="grk-0n-G2W"/>
+                <constraint firstItem="Y9g-Xq-hFm" firstAttribute="top" secondItem="tvg-x8-OsM" secondAttribute="bottom" constant="2" id="guD-E1-tfp"/>
                 <constraint firstItem="iGo-sh-bLA" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="iUL-XZ-iDX"/>
                 <constraint firstItem="tvg-x8-OsM" firstAttribute="top" secondItem="aDk-O5-0CR" secondAttribute="bottom" constant="2" id="n5x-8l-CvW"/>
                 <constraint firstItem="iGo-sh-bLA" firstAttribute="leading" secondItem="aDk-O5-0CR" secondAttribute="trailing" id="z1a-ig-8Bu"/>
@@ -66,6 +75,7 @@
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <connections>
                 <outlet property="arriveBtn" destination="iGo-sh-bLA" id="oWh-iM-ZKr"/>
+                <outlet property="distanceLabel" destination="Y9g-Xq-hFm" id="KiN-YK-3bb"/>
                 <outlet property="titleLabel" destination="aDk-O5-0CR" id="tk9-sV-JfJ"/>
                 <outlet property="typeLabel" destination="tvg-x8-OsM" id="H4P-sl-Wd7"/>
             </connections>

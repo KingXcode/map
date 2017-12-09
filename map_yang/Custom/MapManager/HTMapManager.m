@@ -52,6 +52,32 @@ static HTMapManager *_instance;
 }
 
 
+#pragma mark - 导航方法
+- (NSArray *)getInstalledMapAppWithStartLocation:(CLLocationCoordinate2D)startLocation EndLocation:(CLLocationCoordinate2D)endLocation
+{
+    NSMutableArray *maps = [NSMutableArray array];
+    //苹果地图
+    [maps addObject:@"苹果地图"];
+    
+    //百度地图
+    if ([[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:@"baidumap://"]]) {
+        [maps addObject:@"百度地图"];
+    }
+    
+    //高德地图
+    if ([[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:@"iosamap://"]]) {
+        [maps addObject: @"高德地图"];
+    }
+    
+    //腾讯地图
+    if ([[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:@"qqmap://"]]) {
+        [maps addObject:@"腾讯地图"];
+    }
+    
+    return maps;
+}
+
+
 
 
 

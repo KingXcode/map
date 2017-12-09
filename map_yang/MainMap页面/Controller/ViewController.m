@@ -25,6 +25,7 @@
 #import "HTPOIDetailInfoViewController.h"
 #import "HTCallout_1_View.h"
 #import "HTPOIAroundSearchController.h"
+#import <MapKit/MapKit.h>
 
 @interface ViewController ()<MAMapViewDelegate,AMapSearchDelegate>
 
@@ -376,10 +377,10 @@
     HTCallout_1_View *callout = [HTCallout_1_View loadView];
     callout.annotation = annotation;
     //点击了 到这去 按钮
-    [callout setArrive:^{
-        [HTProgressHUD showMessage:@"开发中...敬请期待..." forView:nil];
-    }];
     __weak typeof(self) __self = self;
+    [callout setArrive:^{
+        [__self clickedCalloutArrive:annotation.coordinate andName:annotation.poi.name];
+    }];
     [callout setSelectType:^(NSString *type) {
         HTPOIAroundSearchController *vc = [[HTPOIAroundSearchController alloc]initWithType:type poi:annotation.poi];
         [__self.navigationController pushViewController:vc animated:YES];
@@ -390,6 +391,123 @@
     annotationView.layer.anchorPoint = CGPointMake(0.5, 0.9189);
     annotationView.bounds = CGRectMake(0, 0, 44, 54);
     return annotationView;
+}
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    
+//        [HTProgressHUD showMessage:@"开发中...敬请期待..." forView:nil];
+-(void)clickedCalloutArrive:(CLLocationCoordinate2D)location andName:(NSString *)endName
+{
+    CLLocationCoordinate2D userLocation = [HTMapManager sharedManager].userLocation.location.coordinate;
+    NSArray *array =  [[HTMapManager sharedManager] getInstalledMapAppWithStartLocation:userLocation EndLocation:location];
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:nil message:@"选择导航软件" preferredStyle:UIAlertControllerStyleAlert];
+
+    for (NSString *title in array) {
+        UIAlertAction *action = [UIAlertAction actionWithTitle:title style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            if ([title isEqualToString:@"苹果地图"])
+            {
+                
+            }
+            else if ([title isEqualToString:@"百度地图"])
+            {
+                
+            }
+            else if ([title isEqualToString:@"高德地图"])
+            {
+                NSString *url = [self getAmapNaviUrlWithStartLocation:userLocation
+                                                            startName:@"我的位置"
+                                                          endLocation:location
+                                                              endName:endName
+                                                                 mode:0
+                                                               policy:0];
+                [[UIApplication sharedApplication] openURL:[NSURL URLWithString:url] options: @{} completionHandler: nil];
+            }
+            else if ([title isEqualToString:@"腾讯地图"])
+            {
+                
+            }
+        }];
+        [alert addAction:action];
+    }
+    [self presentViewController:alert animated:YES completion:nil];
+}
+
+
+
+/**
+ 获取调用高德地图的url
+
+ @param startLocation 起点经纬度坐标，
+        格式为: position=lon,lat[,name]
+        必选参数
+ 
+ @param endLocation 终点经纬度坐标，
+        格式为: position=lon,lat[,name]
+        必选参数
+ 
+ @param modeWay           缺省mode=car；   0
+        出行方式：
+        驾车:mode=car      0
+        公交:mode=bus      1
+        步行:mode=walk     2
+        骑行:mode=ride     3
+        可选参数
+ 
+ @param policyStrategy    缺省policy=0
+        当mode=car(驾车):
+        0:推荐策略,
+        1:避免拥堵,
+        2:避免收费,
+        3:不走高速（仅限移动端）
+        当mode=bus(公交):
+        0:最佳路线,
+        1:换乘少,
+        2:步行少,
+        3:不坐地铁
+        可选参数
+
+ @return 返回调用高德APP的url
+ */
+-(NSString *)getAmapNaviUrlWithStartLocation:(CLLocationCoordinate2D)startLocation
+                                   startName:(NSString *)startName
+                                 endLocation:(CLLocationCoordinate2D)endLocation
+                                     endName:(NSString *)endName
+                                        mode:(NSInteger)modeWay
+                                      policy:(NSInteger)policyStrategy
+{
+    NSMutableString *url = [NSMutableString stringWithFormat:@"http://uri.amap.com/navigation?"];
+    if ([HTTools ht_isBlankString:startName]||startName.length<1) {
+        startName = @"我的位置";
+    }
+    if ([HTTools ht_isBlankString:endName]||endName.length<1) {
+        endName = @"我的位置";
+    }
+    NSString *from = [NSString stringWithFormat:@"from=%f,%f,起点&",startLocation.longitude,startLocation.latitude];
+    NSString *to = [NSString stringWithFormat:@"to=%f,%f,终点&",endLocation.longitude,endLocation.latitude];
+    NSString *model;
+    switch (modeWay) {
+        case 0:
+            model = @"mode=car&";
+            break;
+        case 1:
+            model = @"mode=bus&";
+            break;
+        case 2:
+            model = @"mode=walk&";
+            break;
+        case 3:
+            model = @"mode=ride&";
+            break;
+        default:
+            model = @"mode=car&";
+            break;
+    }
+    NSString *policy = [NSString stringWithFormat:@"policy=%zd&",policyStrategy];
+    [url appendString:from];
+    [url appendString:to];
+    [url appendString:model];
+    [url appendString:policy];
+    [url appendFormat:@"coordinate=gaode&callnative=1"];
+    NSCharacterSet *character = [NSCharacterSet URLFragmentAllowedCharacterSet];
+    return [url stringByAddingPercentEncodingWithAllowedCharacters:character];
 }
 
 

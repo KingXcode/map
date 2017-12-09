@@ -50,6 +50,8 @@
     self.title = [NSString stringWithFormat:@"附近的建筑"];
    
     [self creatUI];
+    [HTProgressHUD LoadingShowMessage:self.poi.name andDetailMessage:@"正在搜索中..." forView:self.view clickedCancel:nil];
+    [self requestData];
     
 }
 
@@ -98,9 +100,9 @@
     request.sortrule            = 0;
     request.requireExtension    = YES;
     request.requireSubPOIs      = YES;
+    request.keywords            = _type;
     request.page                = self.page;
     [self.searchApi AMapPOIAroundSearch:request];
-    [HTProgressHUD LoadingShowMessage:self.poi.name andDetailMessage:@"正在搜索中..." forView:self.view clickedCancel:nil];
 }
 
 
@@ -132,7 +134,18 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 50;
+    AMapPOI *poi = self.dataArray[indexPath.row];
+    NSString *name = poi.name;
+    NSString *type = [NSString stringWithFormat:@"类型:   %@",[poi.type stringByReplacingOccurrencesOfString:@";" withString:@"\n类型:   "]];
+    NSString *tel = [NSString stringWithFormat:@"电话号码:   %@",poi.tel];
+    NSString *dist = [NSString stringWithFormat:@"距离查询位置:   %zd米",poi.distance];
+    
+    CGFloat nameHeight = [name ht_heightOfFont:[UIFont systemFontOfSize:15] limitWidth:(IphoneWidth-30)];
+    CGFloat typeHeight = [type ht_heightOfFont:[UIFont systemFontOfSize:15] limitWidth:(IphoneWidth-30)];
+    CGFloat telHeight  = [tel  ht_heightOfFont:[UIFont systemFontOfSize:15] limitWidth:(IphoneWidth-30)];
+    CGFloat distHeight = [dist ht_heightOfFont:[UIFont systemFontOfSize:15] limitWidth:(IphoneWidth-30)];
+
+    return 10+5+5+5+10+nameHeight+typeHeight+telHeight+distHeight;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
@@ -143,6 +156,11 @@
 -(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
 {
     return 0.1;
+}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 

@@ -19,4 +19,7 @@
 +(UIColor *)ht_lineColor;
 +(UIColor *)ht_clearColor;
 +(UIColor *)ht_emptyColor;
+
++(UIColor *)ht_mianColor;
+
 @end
