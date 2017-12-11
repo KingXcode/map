@@ -69,6 +69,7 @@
 		FB1B4A6A1FBD8DC1001A1DA3 /* UIView+HTExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = FB1B4A481FBD8DC1001A1DA3 /* UIView+HTExtension.m */; };
 		FB1B4A6B1FBD8DC1001A1DA3 /* UIView+HTRedPoint.m in Sources */ = {isa = PBXBuildFile; fileRef = FB1B4A4A1FBD8DC1001A1DA3 /* UIView+HTRedPoint.m */; };
 		FB1B4A6F1FBE70E0001A1DA3 /* HTTransitionOne.m in Sources */ = {isa = PBXBuildFile; fileRef = FB1B4A6E1FBE70E0001A1DA3 /* HTTransitionOne.m */; };
+		FB208CE61FDE2231008253BD /* HTLocationTransform.m in Sources */ = {isa = PBXBuildFile; fileRef = FB208CE51FDE2231008253BD /* HTLocationTransform.m */; };
 		FB828F3F1FD531EC009D3BEA /* HTPOIAroundSearchController.m in Sources */ = {isa = PBXBuildFile; fileRef = FB828F3E1FD531EC009D3BEA /* HTPOIAroundSearchController.m */; };
 		FB828F431FD54952009D3BEA /* HTPoiCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FB828F421FD54952009D3BEA /* HTPoiCell.m */; };
 		FBB8ADB71FD63C12001139BC /* NSString+HTBigNums.m in Sources */ = {isa = PBXBuildFile; fileRef = FBB8ADB61FD63C12001139BC /* NSString+HTBigNums.m */; };
@@ -203,6 +204,8 @@
 		FB1B4A4A1FBD8DC1001A1DA3 /* UIView+HTRedPoint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+HTRedPoint.m"; sourceTree = "<group>"; };
 		FB1B4A6D1FBE70E0001A1DA3 /* HTTransitionOne.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HTTransitionOne.h; sourceTree = "<group>"; };
 		FB1B4A6E1FBE70E0001A1DA3 /* HTTransitionOne.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HTTransitionOne.m; sourceTree = "<group>"; };
+		FB208CE41FDE2231008253BD /* HTLocationTransform.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HTLocationTransform.h; sourceTree = "<group>"; };
+		FB208CE51FDE2231008253BD /* HTLocationTransform.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HTLocationTransform.m; sourceTree = "<group>"; };
 		FB828F3D1FD531EC009D3BEA /* HTPOIAroundSearchController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HTPOIAroundSearchController.h; sourceTree = "<group>"; };
 		FB828F3E1FD531EC009D3BEA /* HTPOIAroundSearchController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HTPOIAroundSearchController.m; sourceTree = "<group>"; };
 		FB828F411FD54952009D3BEA /* HTPoiCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HTPoiCell.h; sourceTree = "<group>"; };
@@ -243,6 +246,8 @@
 			children = (
 				CB1BDB6F1FB1FF9A00228A15 /* HTMapManager.h */,
 				CB1BDB701FB1FF9A00228A15 /* HTMapManager.m */,
+				FB208CE41FDE2231008253BD /* HTLocationTransform.h */,
+				FB208CE51FDE2231008253BD /* HTLocationTransform.m */,
 			);
 			path = MapManager;
 			sourceTree = "<group>";
@@ -826,6 +831,7 @@
 				FB1B4A5E1FBD8DC1001A1DA3 /* UIButton+HT.m in Sources */,
 				CB1BDB7A1FB21A4E00228A15 /* HTColor.m in Sources */,
 				FB1B4A4F1FBD8DC1001A1DA3 /* HTTools+Annimation.m in Sources */,
+				FB208CE61FDE2231008253BD /* HTLocationTransform.m in Sources */,
 				CBB3D76F1FB34C8000813783 /* HTRightMenuViewController.m in Sources */,
 				FBFBA2081FB2C53300B83ACC /* HTMainMapInfoView.m in Sources */,
 				FB1B4A4B1FBD8DC1001A1DA3 /* NSArray+HTTools.m in Sources */,

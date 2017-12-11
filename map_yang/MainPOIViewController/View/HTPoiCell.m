@@ -44,7 +44,7 @@
     _indexPath = indexPath;
     _nameLabel.text = poi.name;
     _typeLabel.text = [NSString stringWithFormat:@"类型:   %@",[poi.type stringByReplacingOccurrencesOfString:@";" withString:@"\n类型:   "]];
-    _telLabel.text = [NSString stringWithFormat:@"电话号码:   %@",poi.tel];
+    _telLabel.text = [NSString stringWithFormat:@"电话号码:   %@",[poi.tel stringByReplacingOccurrencesOfString:@";" withString:@"\n电话号码:   "]];
     _distanceLabel.text = [NSString stringWithFormat:@"距离查询位置:   %zd米",poi.distance];
 }
 

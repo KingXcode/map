@@ -58,7 +58,7 @@
 -(void)creatUI
 {
     UITableView *tableView = [[UITableView alloc]initWithFrame:CGRectZero style:UITableViewStyleGrouped];
-    tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
     tableView.delegate = self;
     tableView.dataSource = self;
     tableView.bounces = YES;
@@ -121,7 +121,6 @@
     HTPoiCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
     if (cell == nil) {
         cell = [[HTPoiCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
-        [cell ht_bottomLineShow];
     }
     if (indexPath.row>=self.dataArray.count) {
         cell.textLabel.text = @"";
@@ -137,7 +136,7 @@
     AMapPOI *poi = self.dataArray[indexPath.row];
     NSString *name = poi.name;
     NSString *type = [NSString stringWithFormat:@"类型:   %@",[poi.type stringByReplacingOccurrencesOfString:@";" withString:@"\n类型:   "]];
-    NSString *tel = [NSString stringWithFormat:@"电话号码:   %@",poi.tel];
+    NSString *tel = [NSString stringWithFormat:@"电话号码:   %@",[poi.tel stringByReplacingOccurrencesOfString:@";" withString:@"\n电话号码:   "]];
     NSString *dist = [NSString stringWithFormat:@"距离查询位置:   %zd米",poi.distance];
     
     CGFloat nameHeight = [name ht_heightOfFont:[UIFont systemFontOfSize:15] limitWidth:(IphoneWidth-30)];
