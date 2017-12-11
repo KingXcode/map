@@ -8,7 +8,6 @@
 
 #import "HTMapManager.h"
 #import <MapKit/MapKit.h>
-#import "HTLocationTransform.h"
 
 @interface HTMapManager()
 
